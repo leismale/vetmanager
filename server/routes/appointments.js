@@ -33,7 +33,7 @@ router.post("/bookAppointment", (req, res, next) => {
         title: req.user.username,
         date: req.body.date,
         timeStart: req.body.timeStart,
-        timeEnd: req.body.timeEnd,
+        //timeEnd: req.body.timeEnd,
     });
   
     appointmentInfo.save(err => {

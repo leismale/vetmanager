@@ -13,12 +13,13 @@ export class AppointmentComponent implements OnInit {
   public min = new Date();
   public max;
   appointments: any;
-  
+  buttons = [{timeStart:"9:00", cursor:"allowed", background: "green"}, {timeStart:"9:15", cursor:"allowed", background: "green"}, {timeStart:"9:30", cursor:"allowed", background: "green"}, {timeStart:"9:45", cursor:"allowed", background: "green"}, {timeStart:"10:00", cursor:"allowed", background: "green"}];
+
   getNextDate() {
     //Calculate the limit date of the appointment
     let newDate = new Date();
     newDate.setDate(newDate.getDate() + 15);
-    this.max = newDate
+    this.max = newDate;
   }
 
   public myFilter = (d: Date): boolean => {
@@ -29,21 +30,32 @@ export class AppointmentComponent implements OnInit {
 
   constructor(public appointmentService: AppointmentService) {}
 
-  ngOnInit() {this.getNextDate()}
+  ngOnInit() {
+    this.getNextDate();
 
-  sendDate(date){
-    console.log(date)
+
+  }
+
+  sendDate(date) {
     this.appointmentService.sendDate(date).subscribe(appointments => {
       this.appointments = appointments;
-      console.log(appointments)
+      for (let i = 0; i < this.appointments.length; i++) {
+        for (let j = 0; j < this.buttons.length; j++) {
+          if (this.buttons[j].timeStart == this.appointments[i].timeStart){
+            this.buttons[j].cursor = "not-allowed";
+            this.buttons[j].background = "red"
+          }
+        }
+      }
+      console.log(appointments);
     });
   }
 
-  pickAppointment(appointment, date, timeStart, timeEnd){
-    console.log(appointment)
-    console.log(date)
-    console.log(timeStart)
-    console.log(timeEnd)
-    this.appointmentService.pickAppointment(appointment, date, timeStart, timeEnd).subscribe();
+  pickAppointment(date, timeStart) {
+    console.log(date);
+    console.log(timeStart);
+    this.appointmentService
+      .pickAppointment(date, timeStart)
+      .subscribe();
   }
 }
