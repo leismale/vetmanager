@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../../services/session';
+import { SessionService } from '../../services/session.service';
 import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
@@ -14,9 +14,9 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  signup(username:string, password:string){
+  signup(username:string, password:string, name:string, surname:string, email:string){
     console.log("signup....");
-    this.sessionService.signup(username,password).subscribe( (user:any) =>{
+    this.sessionService.signup(username, password, name, surname, email).subscribe( (user:any) =>{
       console.log(`WELCOME USER ${user.username}, register OK`);
       console.log(user);
       this.router.navigate(['/']);

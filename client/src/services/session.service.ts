@@ -10,6 +10,7 @@ const { BASEURL } = environment;
 
 interface UserObject {
   username: string;
+  role: string;
 }
 
 @Injectable()
@@ -19,7 +20,6 @@ export class SessionService {
   options: object = { withCredentials: true };
 
   constructor(private http: Http) {
-    this.isLogged().subscribe();
   }
 
   isLogged() {
@@ -37,15 +37,15 @@ export class SessionService {
   }
 
   errorHandler(e) {
-    console.log("SessionServiceError");
+    console.log("Session Service Error");
     console.log(e.message);
     console.log(e);
     return e;
   }
 
-  signup(username: string, password: string): Observable<object> {
+  signup(username: string, password: string, name:string, surname:string, email:string): Observable<object> {
     return this.http
-      .post(`${BASEURL}/api/auth/signup`, { username, password }, this.options)
+      .post(`${BASEURL}/api/auth/signup`, { username, password, name, surname, email }, this.options)
       .pipe(
         map((res: Response) => {
           let data = res.json();

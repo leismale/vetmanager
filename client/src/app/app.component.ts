@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SessionService } from '../services/session';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { SessionService } from '../services/session';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private sessionService:SessionService) { }
+  constructor(private sessionService:SessionService) { sessionService.isLogged().subscribe() }
 
   logout(){
     this.sessionService.logout().subscribe();

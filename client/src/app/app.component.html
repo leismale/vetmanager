@@ -1,15 +1,41 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1 *ngIf="!sessionService.user" >Welcome to {{ title }}!</h1>
-  <h1 *ngIf="sessionService.user" >Welcome {{ sessionService.user.username }}!</h1>
-
+  <h1 *ngIf="sessionService.user">Welcome {{ sessionService.user.username }}!</h1>
 </div>
-<ul>
-  <li><a [routerLink]="['/']">HOME</a></li>
-  <li *ngIf="!sessionService.user"><a [routerLink]="['/signup']">Signup</a></li>
-  <li *ngIf="!sessionService.user"><a [routerLink]="['/login']">Login</a></li>
-  <li *ngIf="sessionService.user"><a href="#" (click)="logout()">Logut</a></li>
-</ul>
 
+<div *ngIf="sessionService.user">
+  <ul>
+    <li *ngIf="sessionService.user.role == 'customer' ">
+      <a [routerLink]="['/appointment']">Book an appointment</a>
+      <br>
+      <a [routerLink]="['/pets']">My pets</a>
+      <br>
+      <a [routerLink]="['/settings']">Settings</a>
+    </li>
+    <li *ngIf="sessionService.user.role == 'admin' ">
+      <a [routerLink]="['/admin']">Dashboard</a>
+    </li>
+    <li *ngIf="sessionService.user.role == 'vet' ">
+      <a [routerLink]="['/vet']">Dashboard</a>
+    </li>
+    <li *ngIf="sessionService.user.role == 'receptionist' ">
+      <a [routerLink]="['/receptionist']">Dashboard</a>
+    </li>
+    <li>
+      <a href="#" (click)="logout()">Log out</a>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!sessionService.user">
+  <ul>
+    <li>
+      <a [routerLink]="['/signup']">Sign up</a>
+    </li>
+    <li>
+      <a [routerLink]="['/login']">Log in</a>
+    </li>
+  </ul>
+</div>
 
 <router-outlet></router-outlet>

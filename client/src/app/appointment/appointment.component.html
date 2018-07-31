@@ -1,0 +1,27 @@
+<div class="example-wrapper">
+    <owl-date-time-inline [(ngModel)]="picker" [min]="min" [max]="max" [owlDateTimeFilter]="myFilter" [firstDayOfWeek]="1" pickerType="calendar"
+        (click)="sendDate(picker)"></owl-date-time-inline>
+    <h4>Value From Picker: {{picker | date: 'dd/MM/yyyy'}}</h4>
+</div>
+
+<br>
+<br>
+<br>
+
+<div *ngIf="appointments">
+    <!-- Poner para que solo se vea esto si hay appointments -->
+    <h3>Available appointments on the {{picker | date: 'dd of MMM'}}</h3>
+
+    <button (click)="pickAppointment('9:00', picker, '9:00', '9:15')" [class.disable]="appointments.timeStart == '9:00'" class="disable" value="9:00">9:00</button>
+    <button (click)="pickAppointment('9:15')" [class.disable]="!appointments" class="disable">9:15</button>
+
+    <div *ngFor="let appointment of appointments">
+        <button (click)="pickAppointment(appointment._id)">{{appointment.timeStart}}</button>
+    </div>
+</div>
+
+<!-- <div class="example-wrapper">
+        <owl-date-time-inline [(ngModel)]="dateTime4" [min]="min" [max]="max" [owlDateTimeFilter]="myFilter" [firstDayOfWeek]="1"
+            pickerType="timer"></owl-date-time-inline>
+        <h4>Value From Picker: {{dateTime4 | date: 'HH:mm'}}</h4>
+    </div> -->

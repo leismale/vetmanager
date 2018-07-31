@@ -1,5 +1,5 @@
 {
-  "name": "front",
+  "name": "client",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -11,7 +11,8 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^6.0.3",
+    "@angular/animations": "^6.1.0",
+    "@angular/cdk": "^6.4.2",
     "@angular/common": "^6.0.3",
     "@angular/compiler": "^6.0.3",
     "@angular/core": "^6.0.3",
@@ -20,7 +21,11 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "bower": "^1.8.4",
     "core-js": "^2.5.4",
+    "jquery": "^3.3.1",
+    "jquery-datetimepicker": "^2.5.20",
+    "ng-pick-datetime": "^6.0.10",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
