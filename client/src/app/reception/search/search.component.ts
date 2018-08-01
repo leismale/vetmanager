@@ -1,0 +1,29 @@
+import { Component, OnInit } from "@angular/core";
+import { PetService } from "../../../services/pet.service";
+import { CustomerService } from "../../../services/customer.service";
+
+@Component({
+  selector: "app-search",
+  templateUrl: "./search.component.html",
+  styleUrls: ["./search.component.css"]
+})
+export class SearchComponent implements OnInit {
+  items;
+  constructor(
+    private petService: PetService,
+    private customerService: CustomerService
+  ) {}
+
+  ngOnInit() {}
+
+  getAllPets() {
+    this.petService.getAllPets().subscribe(items => {
+      this.items = items;
+    });
+  }
+  getAllCustomers() {
+    this.customerService.getAllCustomers().subscribe(items => {
+      this.items = items;
+    });
+  }
+}

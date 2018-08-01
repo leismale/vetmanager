@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const petSchema = new Schema(
   {
-    owner: { type: Schema.Types.ObjectId, ref: "User" },
+    owner: { type: String},
     name: { type: String, required: true },
     species: String,
     breed: String,

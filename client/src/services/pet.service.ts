@@ -14,45 +14,32 @@ const { BASEURL } = environment;
 } */
 
 @Injectable()
-export class AppointmentService {
+export class PetService {
   options: object = { withCredentials: true };
 
   constructor(private http: Http) {}
   
   errorHandler(e) {
-    console.log("Appointment Service Error");
+    console.log("Pet Service Error");
     console.log(e.message);
     console.log(e);
     return e;
   }
 
-  getAllAppointments(){
+  getAllPets(){
     return this.http
-    .get(`${BASEURL}/api/appointments/getAllAppointments/`, this.options)
+    .get(`${BASEURL}/api/pets/getAllPets/`, this.options)
     .pipe(
       map((res: Response) => {
-        console.log(res.json())
         return res.json();
       }),
       catchError(e => of(this.errorHandler(e)))
     ); 
   }
 
-  getAppointments(date): Observable<object> {
+  newPet(info): Observable<object> {
     return this.http
-    .post(`${BASEURL}/api/appointments/newAppointment`, { date }, this.options)
-    .pipe(
-      map((res: Response) => {
-          return res.json();
-        }),
-        catchError(e => of(this.errorHandler(e)))
-      );
-  }
-
-
-  pickAppointment(date, timeStart): Observable<object> {
-    return this.http
-      .post(`${BASEURL}/api/appointments/bookAppointment`, { date, timeStart }, this.options)
+      .post(`${BASEURL}/api/pets/newPet`, info, this.options)
       .pipe(
         map((res: Response) => {
             console.log(res)

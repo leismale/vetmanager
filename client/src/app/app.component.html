@@ -8,7 +8,7 @@
     <li *ngIf="sessionService.user.role == 'customer' ">
       <a [routerLink]="['/appointment']">Book an appointment</a>
       <br>
-      <a [routerLink]="['/pets']">My pets</a>
+      <a [routerLink]="['/mypets']">My pets</a>
       <br>
       <a [routerLink]="['/settings']">Settings</a>
     </li>
@@ -19,7 +19,9 @@
       <a [routerLink]="['/vet']">Dashboard</a>
     </li>
     <li *ngIf="sessionService.user.role == 'receptionist' ">
-      <a [routerLink]="['/receptionist']">Dashboard</a>
+      <a [routerLink]="['/reception']">Dashboard</a>
+      <br>
+      <a [routerLink]="['/newpet']">New pet</a>
     </li>
     <li>
       <a href="#" (click)="logout()">Log out</a>

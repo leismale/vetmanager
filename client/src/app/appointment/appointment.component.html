@@ -1,17 +1,17 @@
-<div class="example-wrapper">
+<div class="example-wrapper" (click)="getAppointments(picker)">
     <owl-date-time-inline [(ngModel)]="picker" [min]="min" [max]="max" [owlDateTimeFilter]="myFilter" [firstDayOfWeek]="1" pickerType="calendar"
-        (click)="sendDate(picker)"></owl-date-time-inline>
-    <h4>Value From Picker: {{picker | date: 'dd/MM/yyyy'}}</h4>
+        ></owl-date-time-inline>
 </div>
 
 <br>
 <br>
 <br>
-
 <div *ngIf="appointments">
     <h3>Available appointments on the {{picker | date: 'dd of MMM'}}</h3>
 
-    <div *ngFor="let item of buttons">
-        <button [disabled]="item.background == 'red'" [ngStyle]="{'cursor': item.cursor, 'background': item.background}" (click)="pickAppointment(picker, item.timeStart)">{{item.timeStart}}</button>
+    <div>
+        <button *ngFor="let item of buttons" [disabled]="item.background == 'red'" [ngStyle]="{'cursor': item.cursor, 'background': item.background}"
+            class="btn btn-default" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="top"
+            (confirm)="pickAppointment(picker, item.timeStart)" (cancel)="cancelClicked = true">{{item.timeStart}}</button>
     </div>
 </div>

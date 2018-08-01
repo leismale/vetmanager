@@ -2,29 +2,21 @@ const express = require("express");
 const router = express.Router();
 const Appointments = require("../models/Appointment");
 
+
+router.get("/getAllAppointments", (req, res, next) => {
+  Appointments.find().then(appointments => {
+    return res.status(200).json(appointments);
+  });
+});
+
+
 router.post("/newAppointment", (req, res, next) => {
   const { date } = req.body;
 
   Appointments.find({ date }).then(appointments => {
-    res.status(200).json(appointments);
-    console.log(appointments);
+    return res.status(200).json(appointments);
   });
 });
-
-/* router.post("/bookAppointment", (req, res, next) => {
-  let appointmentId = req.body.appointment;
-
-  let appointmentInfo = {
-    user: req.user._id,
-    title: req.user.username
-  };
-
-  Appointments.findByIdAndUpdate(
-    appointmentId,
-    { $set: appointmentInfo },
-    { new: true }
-  ).then(res.status(200).json());
-}); */
 
 
 router.post("/bookAppointment", (req, res, next) => {

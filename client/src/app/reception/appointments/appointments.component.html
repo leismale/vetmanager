@@ -1,0 +1,8 @@
+<div class="form">
+    <label for="search">Search</label>
+    <input type="text" [(ngModel)]="search">
+  </div>
+
+<div *ngFor="let appointment of appointments | filter:'title':search">
+  {{appointment.title}}
+</div>
