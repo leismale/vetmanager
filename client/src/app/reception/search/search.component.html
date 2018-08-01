@@ -1,10 +1,11 @@
 <div class="form">
-    <input (click)="getAllPets()" type="radio" id="pets" name="search" [(ngModel)]="pets" value="pets" /> Pets
-    <input (click)="getAllCustomers()" type="radio" id="customers" name="search" [(ngModel)]="customers" value="customers" /> customers
+    <input (click)="getAllPets()" type="radio" name="search" [(ngModel)]="pets" value="pets"/> Pets
+    <input (click)="getAllCustomers()" type="radio" name="search" [(ngModel)]="customers" value="customers"/> Customers
     <br>
     <label for="search">Search</label>
     <input type="text" [(ngModel)]="search">
 </div>
 <div *ngFor="let item of items | filter:'name':search">
-  {{item.name}}
+  {{item.name}} {{item.surname}}
+  <a [routerLink]="['/details', item._id]">Details</a>
 </div>

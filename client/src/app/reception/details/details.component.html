@@ -1,0 +1,22 @@
+<div *ngIf="item">
+  <div *ngIf="item.username">
+    <!-- Check if it's a customer, then show properties -->
+    {{item.name}}
+    <br>
+    {{item.surname}}
+    <br>
+    {{item.username}}
+    <img [src]="item.profilePic" alt="">
+  </div>
+  
+  <div *ngIf="item.species">
+    <!-- Check if it's a pet, then show properties -->
+    {{item.name}}
+    <br>
+    {{item.species}}
+    <br>
+    {{item.color}}
+  </div>
+</div>
+
+<a [routerLink]="['/reception']">Dashboard</a>

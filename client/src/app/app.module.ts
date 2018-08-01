@@ -24,6 +24,7 @@ import { NewpetComponent } from "./reception/newpet/newpet.component";
 import { PetService } from "../services/pet.service";
 import { CustomerService } from "../services/customer.service";
 import { SearchComponent } from './reception/search/search.component';
+import { DetailsComponent } from './reception/details/details.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SearchComponent } from './reception/search/search.component';
     AppointmentsComponent,
     FilterPipe,
     NewpetComponent,
-    SearchComponent
+    SearchComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

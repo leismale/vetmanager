@@ -5,6 +5,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { MypetsComponent } from './mypets/mypets.component';
 import { ReceptionComponent } from './reception/reception.component';
 import { NewpetComponent } from './reception/newpet/newpet.component';
+import { DetailsComponent } from './reception/details/details.component';
 
 export const routes: Routes = [
   { path:'signup', component: SignupComponent},
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path:'mypets', component: MypetsComponent},
   { path:'reception', component: ReceptionComponent},
   { path:'newpet', component: NewpetComponent},
+  { path:'details/:id', component: DetailsComponent}
 ];

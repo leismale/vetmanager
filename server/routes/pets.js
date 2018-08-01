@@ -34,4 +34,13 @@ router.post("/newPet", (req, res, next) => {
   });
 });
 
+
+router.get("/getPet/:id", (req, res, next) => {
+  petId = req.params.id
+  console.log(petId)
+  Pet.findById(petId).then(pet => {
+    return res.status(200).json(pet);
+  });
+});
+
 module.exports = router;

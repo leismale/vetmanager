@@ -18,7 +18,7 @@ export class CustomerService {
   options: object = { withCredentials: true };
 
   constructor(private http: Http) {}
-  
+
   errorHandler(e) {
     console.log("Pet Service Error");
     console.log(e.message);
@@ -26,15 +26,26 @@ export class CustomerService {
     return e;
   }
 
-  getAllCustomers(){
+  getAllCustomers() {
     return this.http
-    .get(`${BASEURL}/api/customers/getAllCustomers/`, this.options)
-    .pipe(
-      map((res: Response) => {
-        return res.json();
-      }),
-      catchError(e => of(this.errorHandler(e)))
-    ); 
+      .get(`${BASEURL}/api/customers/getAllCustomers/`, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
+
+  getCustomer(id) {
+    return this.http
+      .get(`${BASEURL}/api/customers/getCustomer/${id}`, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
   }
 
 }

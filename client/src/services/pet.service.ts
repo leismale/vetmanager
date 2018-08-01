@@ -49,8 +49,15 @@ export class PetService {
       );
   }
 
-
-
+  getPet(id) {
+    return this.http.get(`${BASEURL}/api/pets/getPet/${id}`, this.options).pipe(
+      map((res: Response) => {
+        console.log(res.json());
+        return res.json();
+      }),
+      catchError(e => of(this.errorHandler(e)))
+    );
+  }
 
 
 }
