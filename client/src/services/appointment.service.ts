@@ -31,7 +31,6 @@ export class AppointmentService {
     .get(`${BASEURL}/api/appointments/getAllAppointments/`, this.options)
     .pipe(
       map((res: Response) => {
-        console.log(res.json())
         return res.json();
       }),
       catchError(e => of(this.errorHandler(e)))
@@ -55,7 +54,6 @@ export class AppointmentService {
       .post(`${BASEURL}/api/appointments/bookAppointment`, { date, timeStart }, this.options)
       .pipe(
         map((res: Response) => {
-            console.log(res)
           return res.json();
         }),
         catchError(e => of(this.errorHandler(e)))

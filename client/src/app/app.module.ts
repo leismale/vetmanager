@@ -25,6 +25,8 @@ import { PetService } from "../services/pet.service";
 import { CustomerService } from "../services/customer.service";
 import { SearchComponent } from './reception/search/search.component';
 import { DetailsComponent } from './reception/details/details.component';
+import {CalendarModule} from "ap-angular-fullcalendar";
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { DetailsComponent } from './reception/details/details.component';
     NgbModule.forRoot(),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: "danger" // set defaults here
-    })
+    }),
+    CalendarModule
   ],
   providers: [SessionService, AppointmentService, PetService, CustomerService],
   bootstrap: [AppComponent]
