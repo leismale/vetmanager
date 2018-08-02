@@ -15,4 +15,26 @@ router.get("/getCustomer/:id", (req, res, next) => {
   });
 });
 
+router.post("/updateCustomer", (req, res, next) => {
+  console.log(req.body);
+  const username = req.body.username;
+  let customerInfo = {
+    name: req.body.name,
+    surname: req.body.surname,
+    email: req.body.email
+  };
+
+  Customer.findOneAndUpdate({ username: username }, customerInfo, { new: true })
+    .then(user => {
+      console.log(user);
+      res.status(200).json(user);
+    })
+    .catch(e => {
+      res.status(500).json({
+        status: "error",
+        error: e.message
+      });
+    });
+});
+
 module.exports = router;

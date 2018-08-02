@@ -23,11 +23,41 @@ export class AppointmentComponent implements OnInit {
   public cancelClicked: boolean = false;
   appointments;
   buttons = [
-    { start: "9:00", end: "9:15", cursor: "allowed", background: "green", value:"9" },
-    { start: "9:15", end: "9:30", cursor: "allowed", background: "green", value:"9.25" },
-    { start: "9:30", end: "9:45", cursor: "allowed", background: "green", value:"9.5" },
-    { start: "9:45", end: "10:00", cursor: "allowed", background: "green",  value:"9.75" },
-    { start: "10:00", end: "10:15", cursor: "allowed", background: "green",  value:"10" }
+    {
+      start: "9:00",
+      end: "9:15",
+      cursor: "allowed",
+      background: "green",
+      value: "9"
+    },
+    {
+      start: "9:15",
+      end: "9:30",
+      cursor: "allowed",
+      background: "green",
+      value: "9.25"
+    },
+    {
+      start: "9:30",
+      end: "9:45",
+      cursor: "allowed",
+      background: "green",
+      value: "9.5"
+    },
+    {
+      start: "9:45",
+      end: "10:00",
+      cursor: "allowed",
+      background: "green",
+      value: "9.75"
+    },
+    {
+      start: "10:00",
+      end: "10:15",
+      cursor: "allowed",
+      background: "green",
+      value: "10"
+    }
   ];
 
   getNextDate() {
@@ -57,26 +87,37 @@ export class AppointmentComponent implements OnInit {
     this.appointmentService.getAppointments(date).subscribe(appointments => {
       console.log(appointments);
       this.appointments = appointments;
-      for (let i = 0; i < this.appointments["length"]; i++) {
-        for (let j = 0; j < this.buttons.length; j++) {
-          if (this.buttons[j].start == this.appointments[i].startTime) {
-            this.buttons[j].cursor = "not-allowed";
-            this.buttons[j].background = "red";
-            break;
-          } else {
-            this.buttons[j].cursor = "pointer";
-            this.buttons[j].background = "green";
-          }
-        }
-      }
+      this.update();
     });
   }
 
+  update() { //Si hay tiempo revisarlo para refactorizar (un solo for)
+    this.buttons.forEach(e => {
+      e.cursor = "pointer";
+      e.background = "green";
+    });
+    for (let i = 0; i < this.appointments["length"]; i++) {
+      let button = this.buttons.find(
+        e => e.start == this.appointments[i].startTime
+      );
+      if (button) {
+        button.cursor = "not-allowed";
+        button.background = "red";
+      }
+    }
+  }
+
   pickAppointment(date, startTime, value) {
-    let timeZoneDifference= (Number(value)+2) //Add 2 hours because of the timezone time difference
-    let start = new Date(date.getTime() + (timeZoneDifference*60*60*1000)) //Add the time to the date
-    console.log(start)
-    let end = new Date(start.getTime() + (15*60*1000)); //Add 15min to the start time
-    this.appointmentService.pickAppointment(date, start, startTime, end).subscribe(res => this.getAppointments(date));
+    let timeZoneDifference = Number(value) + 2; //Add 2 hours because of the timezone time difference
+    let start = new Date(date.getTime() + timeZoneDifference * 60 * 60 * 1000); //Add the time to the date
+    console.log(start);
+    let end = new Date(start.getTime() + 15 * 60 * 1000); //Add 15min to the start time
+    this.appointmentService
+      .pickAppointment(date, start, startTime, end)
+      .subscribe(res => {
+        this.appointments.push(res);
+        this.getAppointments(date);
+        this.update();
+      });
   }
 }

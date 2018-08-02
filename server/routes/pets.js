@@ -39,4 +39,26 @@ router.get("/getPet/:id", (req, res, next) => {
   });
 });
 
+router.post("/updatePet", (req, res, next) => {
+  console.log(req.body)
+  const name = req.body.name;
+  let petInfo = {
+    name: req.body.name,
+    species: req.body.species,
+    color: req.body.color,
+    weigth: req.body.weigth
+  };
+
+  Pet.findOneAndUpdate({ name: name }, petInfo, { new: true })
+    .then(pet => {
+      res.status(200).json(pet);
+    })
+    .catch(e => {
+      res.status(500).json({
+        status: "error",
+        error: e.message
+      });
+    });
+});
+
 module.exports = router;

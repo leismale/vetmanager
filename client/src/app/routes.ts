@@ -7,6 +7,7 @@ import { ReceptionComponent } from './reception/reception.component';
 import { NewpetComponent } from './reception/newpet/newpet.component';
 import { DetailsComponent } from './reception/details/details.component';
 import { AdminComponent } from './admin/admin.component';
+import { AppointmentdetailsComponent } from './admin/appointmentdetails/appointmentdetails.component';
 
 export const routes: Routes = [
   { path:'signup', component: SignupComponent},
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path:'reception', component: ReceptionComponent},
   { path:'newpet', component: NewpetComponent},
   { path:'details/:id', component: DetailsComponent},
-  { path:'admin', component: AdminComponent}
+  { path:'admin', component: AdminComponent},
+  { path:'appointmentdetails/:id', component: AppointmentdetailsComponent}
 ];

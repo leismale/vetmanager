@@ -23,11 +23,12 @@ import { FilterPipe } from "./pipe/filter.pipe";
 import { NewpetComponent } from "./reception/newpet/newpet.component";
 import { PetService } from "../services/pet.service";
 import { CustomerService } from "../services/customer.service";
-import { SearchComponent } from './reception/search/search.component';
-import { DetailsComponent } from './reception/details/details.component';
-import {CalendarModule} from "ap-angular-fullcalendar";
-import * as $ from 'jquery';
-import { AdminComponent } from './admin/admin.component';
+import { SearchComponent } from "./reception/search/search.component";
+import { DetailsComponent } from "./reception/details/details.component";
+import { CalendarModule } from "ap-angular-fullcalendar";
+import * as $ from "jquery";
+import { AdminComponent } from "./admin/admin.component";
+import { AppointmentdetailsComponent } from "./admin/appointmentdetails/appointmentdetails.component";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AdminComponent } from './admin/admin.component';
     NewpetComponent,
     SearchComponent,
     DetailsComponent,
-    AdminComponent
+    AdminComponent,
+    AppointmentdetailsComponent
   ],
   imports: [
     BrowserModule,

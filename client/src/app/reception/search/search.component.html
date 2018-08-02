@@ -6,6 +6,5 @@
     <input type="text" [(ngModel)]="search">
 </div>
 <div *ngFor="let item of items | filter:'name':search">
-  {{item.name}} {{item.surname}}
-  <a [routerLink]="['/details', item._id]">Details</a>
+  <a [routerLink]="['/details', item._id]">{{item.name}} {{item.surname}}</a>
 </div>

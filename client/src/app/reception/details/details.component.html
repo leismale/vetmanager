@@ -17,13 +17,44 @@
 
 
 <div *ngIf="sessionService.user">
+
   <div *ngIf="sessionService.user.role == 'admin'">
-    
+    <div *ngIf="item">
+      <div *ngIf="item.email">
+        <form>
+          <h2>User details</h2>
+          <label> Username </label>
+          <input type="text" [(ngModel)]="item.username" name="username" />
+          <br>
+          <label> Name </label>
+          <input type="text" [(ngModel)]="item.name" name="name" />
+          <label> Surname </label>
+          <input type="text" [(ngModel)]="item.surname" name="surname" />
+          <label> Email </label>
+          <input type="email" [(ngModel)]="item.email" name="email" />
+          <button (click)="updateCustomer(item.username, item.name, item.surname, item.email)"> Change details </button>
+        </form>
+        <p class="error"> {{ error }} </p>
+      </div>
+
+      <div *ngIf="item.species">
+        <form>
+          <h2>Pet details</h2>
+          <label> Name </label>
+          <input type="text" [(ngModel)]="item.name" name="petName" />
+          <label> Species </label>
+          <input type="text" [(ngModel)]="item.species" name="species" />
+          <label> Color </label>
+          <input type="text" [(ngModel)]="item.color" name="color" />
+          <label> Weight </label>
+          <input type="text" [(ngModel)]="item.weight" name="weight" />
+          <button (click)="updatePet(item.name, item.species, item.color, item.weight)"> Change details </button>
+        </form>
+        <p class="error"> {{ error }} </p>
+      </div>
+
+    </div>
+
   </div>
 
-
-
-
-  <a *ngIf="sessionService.user.role == 'receptionist'" [routerLink]="['/reception']">Dashboard</a>
-  <a *ngIf="sessionService.user.role == 'admin'" [routerLink]="['/admin']">Dashboard</a>
 </div>

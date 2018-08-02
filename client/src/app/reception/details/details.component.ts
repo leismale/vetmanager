@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CustomerService } from "../../../services/customer.service";
 import { PetService } from "../../../services/pet.service";
 import { SessionService } from "../../../services/session.service";
@@ -16,7 +16,8 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private customerService: CustomerService,
     private petService: PetService,
-    public sessionService: SessionService
+    public sessionService: SessionService,
+    private router: Router
   ) {
     this.getDetails();
   }
@@ -35,6 +36,22 @@ export class DetailsComponent implements OnInit {
         this.item = customer;
         console.log(this.item);
       }
+    });
+  }
+
+  updateCustomer(username, name, surname, email) {
+    this.customerService
+      .updateCustomer(username, name, surname, email)
+      .subscribe( () => {
+        this.router.navigate(["admin"]);
+      });
+  }
+
+  updatePet(name, species, color, weight) {
+    this.petService
+    .updatePet(name, species, color, weight)
+    .subscribe(() => {
+      this.router.navigate(["admin"]);
     });
   }
 }

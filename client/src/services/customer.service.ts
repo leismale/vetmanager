@@ -48,4 +48,14 @@ export class CustomerService {
       );
   }
 
+  updateCustomer(username, name, surname, email){
+    return this.http
+      .post(`${BASEURL}/api/customers/updateCustomer`, { username, name, surname, email }, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
 }
