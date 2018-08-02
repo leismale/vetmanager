@@ -1,0 +1,30 @@
+<div *ngIf="item">
+  {{item.start | date: 'hh:mm'}}
+  <br> {{item.end | date: 'hh:mm'}}
+  <br> {{item.title}}
+  <br> {{item.user.email}}
+</div>
+
+
+<div *ngIf="sessionService.user">
+
+  <div *ngIf="sessionService.user.role == 'admin'">
+    <div *ngIf="item">
+      <form>
+        <h2>Appointment details</h2>
+        <label> Customer </label>
+        <input type="text" [(ngModel)]="item.title" name="title" />
+        <br>
+        <label> Start </label>
+        <input type="text" [(ngModel)]="start" name="start" />
+        <label> End </label>
+        <input type="text" [(ngModel)]="end" name="end" />
+        <button (click)="updateAppointment(item.title, start, end)"> Change details </button>
+      </form>
+      <p class="error"> {{ error }} </p>
+
+
+    </div>
+  </div>
+
+</div>

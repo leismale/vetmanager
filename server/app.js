@@ -88,10 +88,12 @@ const authRouter = require('./routes/auth');
 const appointmensRouter = require('./routes/appointments');
 const petsRouter = require('./routes/pets');
 const customersRouter = require('./routes/customers');
+const staffRouter = require('./routes/staff');
 app.use('/api/auth', authRouter);
 app.use('/api/appointments', appointmensRouter);
 app.use('/api/pets', petsRouter);
 app.use('/api/customers', customersRouter);
+app.use('/api/staff', staffRouter);
 
 
 module.exports = app;

@@ -6,7 +6,8 @@ const staffSchema = new Schema(
     role: {
       type: String,
       required: true,
-      enum: ["vet", "receptionist", "admin"]
+      enum: ["vet", "receptionist", "admin"],
+      default: "vet"
     },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },

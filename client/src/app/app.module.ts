@@ -28,7 +28,12 @@ import { DetailsComponent } from "./reception/details/details.component";
 import { CalendarModule } from "ap-angular-fullcalendar";
 import * as $ from "jquery";
 import { AdminComponent } from "./admin/admin.component";
-import { AppointmentdetailsComponent } from "./admin/appointmentdetails/appointmentdetails.component";
+import { AppointmentdetailsComponent } from "./reception/appointmentdetails/appointmentdetails.component";
+import { StaffComponent } from './admin/staff/staff.component';
+import { NewstaffComponent } from './admin/newstaff/newstaff.component';
+import { StaffcalendarComponent } from './admin/staffcalendar/staffcalendar.component';
+import { StockComponent } from './admin/stock/stock.component';
+import { StaffService } from "../services/staff.service";
 
 @NgModule({
   declarations: [
@@ -45,7 +50,11 @@ import { AppointmentdetailsComponent } from "./admin/appointmentdetails/appointm
     SearchComponent,
     DetailsComponent,
     AdminComponent,
-    AppointmentdetailsComponent
+    AppointmentdetailsComponent,
+    StaffComponent,
+    NewstaffComponent,
+    StaffcalendarComponent,
+    StockComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +70,7 @@ import { AppointmentdetailsComponent } from "./admin/appointmentdetails/appointm
     }),
     CalendarModule
   ],
-  providers: [SessionService, AppointmentService, PetService, CustomerService],
+  providers: [SessionService, AppointmentService, PetService, CustomerService, StaffService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

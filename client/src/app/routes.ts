@@ -7,7 +7,9 @@ import { ReceptionComponent } from './reception/reception.component';
 import { NewpetComponent } from './reception/newpet/newpet.component';
 import { DetailsComponent } from './reception/details/details.component';
 import { AdminComponent } from './admin/admin.component';
-import { AppointmentdetailsComponent } from './admin/appointmentdetails/appointmentdetails.component';
+import { AppointmentdetailsComponent } from './reception/appointmentdetails/appointmentdetails.component';
+import { NewstaffComponent } from './admin/newstaff/newstaff.component';
+import { StockComponent } from './admin/stock/stock.component';
 
 export const routes: Routes = [
   { path:'signup', component: SignupComponent},
@@ -18,5 +20,7 @@ export const routes: Routes = [
   { path:'newpet', component: NewpetComponent},
   { path:'details/:id', component: DetailsComponent},
   { path:'admin', component: AdminComponent},
-  { path:'appointmentdetails/:id', component: AppointmentdetailsComponent}
+  { path:'appointmentdetails/:id', component: AppointmentdetailsComponent},
+  { path:'newstaff', component: NewstaffComponent},
+  { path:'stock', component: StockComponent}
 ];

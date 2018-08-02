@@ -14,7 +14,7 @@ const { BASEURL } = environment;
 } */
 
 @Injectable()
-export class AppointmentService {
+export class StaffService {
   options: object = { withCredentials: true };
 
   constructor(private http: Http) {}
@@ -26,9 +26,9 @@ export class AppointmentService {
     return e;
   }
 
-  getAllAppointments() {
+  getAllStaff() {
     return this.http
-      .get(`${BASEURL}/api/appointments/getAllAppointments/`, this.options)
+      .get(`${BASEURL}/api/staff/getAllStaff/`, this.options)
       .pipe(
         map((res: Response) => {
           return res.json();
@@ -52,6 +52,31 @@ export class AppointmentService {
       );
   }
 
+
+  getAllAppointments() {
+    return this.http
+      .get(`${BASEURL}/api/appointments/getAllAppointments/`, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
+
+
+  newStaff(username, password, name, surname, email): Observable<object> {
+    console.log(username)
+    return this.http
+      .post(`${BASEURL}/api/staff/newstaff`, { username, password, name, surname, email }, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
+/* 
   pickAppointment(date, start, startTime, end): Observable<object> {
     console.log(startTime);
     return this.http
@@ -88,5 +113,5 @@ export class AppointmentService {
         }),
         catchError(e => of(this.errorHandler(e)))
       );
-  }
+  } */
 }

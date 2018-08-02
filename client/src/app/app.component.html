@@ -13,7 +13,10 @@
       <a [routerLink]="['/settings']">Settings</a>
     </li>
     <li *ngIf="sessionService.user.role == 'admin' ">
-      <a [routerLink]="['/admin']">Dashboard</a>
+      <a [routerLink]="['/reception']">Clinic Dashboard</a>
+      <a [routerLink]="['/admin']">Personal Dashboard</a>
+      <a [routerLink]="['/stock']">Stock Dashboard</a>
+      <a [routerLink]="['/newstaff']">New staff</a>
     </li>
     <li *ngIf="sessionService.user.role == 'vet' ">
       <a [routerLink]="['/vet']">Dashboard</a>
