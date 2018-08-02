@@ -35,7 +35,7 @@ export class CalendarComponent implements OnInit {
     slotDuration: "00:15",
     minTime: "9:00",
     maxTime: "18:30",
-    defaultView: "agendaFourDay"
+    defaultView: "agendaDay"
     /* [
       {
         title: "All Day Event",

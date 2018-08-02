@@ -49,9 +49,10 @@ export class AppointmentService {
   }
 
 
-  pickAppointment(date, timeStart): Observable<object> {
+  pickAppointment(date, start, startTime, end): Observable<object> {
+    console.log(startTime)
     return this.http
-      .post(`${BASEURL}/api/appointments/bookAppointment`, { date, timeStart }, this.options)
+      .post(`${BASEURL}/api/appointments/bookAppointment`, { date, start, startTime, end }, this.options)
       .pipe(
         map((res: Response) => {
           return res.json();

@@ -27,6 +27,7 @@ import { SearchComponent } from './reception/search/search.component';
 import { DetailsComponent } from './reception/details/details.component';
 import {CalendarModule} from "ap-angular-fullcalendar";
 import * as $ from 'jquery';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import * as $ from 'jquery';
     FilterPipe,
     NewpetComponent,
     SearchComponent,
-    DetailsComponent
+    DetailsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

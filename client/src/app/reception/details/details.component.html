@@ -2,21 +2,28 @@
   <div *ngIf="item.username">
     <!-- Check if it's a customer, then show properties -->
     {{item.name}}
-    <br>
-    {{item.surname}}
-    <br>
-    {{item.username}}
+    <br> {{item.surname}}
+    <br> {{item.username}}
     <img [src]="item.profilePic" alt="">
   </div>
-  
+
   <div *ngIf="item.species">
     <!-- Check if it's a pet, then show properties -->
     {{item.name}}
-    <br>
-    {{item.species}}
-    <br>
-    {{item.color}}
+    <br> {{item.species}}
+    <br> {{item.color}}
   </div>
 </div>
 
-<a [routerLink]="['/reception']">Dashboard</a>
+
+<div *ngIf="sessionService.user">
+  <div *ngIf="sessionService.user.role == 'admin'">
+    
+  </div>
+
+
+
+
+  <a *ngIf="sessionService.user.role == 'receptionist'" [routerLink]="['/reception']">Dashboard</a>
+  <a *ngIf="sessionService.user.role == 'admin'" [routerLink]="['/admin']">Dashboard</a>
+</div>

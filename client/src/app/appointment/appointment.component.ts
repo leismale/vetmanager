@@ -1,27 +1,33 @@
-import { Component, OnInit, ChangeDetectionStrategy, NgZone, ApplicationRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  NgZone,
+  ApplicationRef
+} from "@angular/core";
 import { AppointmentService } from "../../services/appointment.service";
 
 @Component({
   selector: "app-appointment",
   templateUrl: "./appointment.component.html",
-  styleUrls: ["./appointment.component.css"],
+  styleUrls: ["./appointment.component.css"]
 })
 export class AppointmentComponent implements OnInit {
   public nextDate: any;
   public startAt = new Date();
   public min = new Date();
   public max;
-  public popoverTitle: string = 'Popover title';
-  public popoverMessage: string = 'Popover description';
+  public popoverTitle: string = "Popover title";
+  public popoverMessage: string = "Popover description";
   public confirmClicked: boolean = false;
   public cancelClicked: boolean = false;
   appointments;
   buttons = [
-    { timeStart: "9:00", cursor: "allowed", background: "green" },
-    { timeStart: "9:15", cursor: "allowed", background: "green" },
-    { timeStart: "9:30", cursor: "allowed", background: "green" },
-    { timeStart: "9:45", cursor: "allowed", background: "green" },
-    { timeStart: "10:00", cursor: "allowed", background: "green" }
+    { start: "9:00", end: "9:15", cursor: "allowed", background: "green", value:"9" },
+    { start: "9:15", end: "9:30", cursor: "allowed", background: "green", value:"9.25" },
+    { start: "9:30", end: "9:45", cursor: "allowed", background: "green", value:"9.5" },
+    { start: "9:45", end: "10:00", cursor: "allowed", background: "green",  value:"9.75" },
+    { start: "10:00", end: "10:15", cursor: "allowed", background: "green",  value:"10" }
   ];
 
   getNextDate() {
@@ -37,7 +43,11 @@ export class AppointmentComponent implements OnInit {
     return day !== 0 && day !== 6;
   };
 
-  constructor(public appointmentService: AppointmentService, private ngZone:NgZone, private appRef:ApplicationRef) {}
+  constructor(
+    public appointmentService: AppointmentService,
+    private ngZone: NgZone,
+    private appRef: ApplicationRef
+  ) {}
 
   ngOnInit() {
     this.getNextDate();
@@ -45,29 +55,28 @@ export class AppointmentComponent implements OnInit {
 
   getAppointments(date) {
     this.appointmentService.getAppointments(date).subscribe(appointments => {
-    console.log(appointments)
-    this.appointments = appointments;
-    for (let i = 0; i < this.appointments["length"]; i++) {
-      for (let j = 0; j < this.buttons.length; j++) {
-        if (this.buttons[j].timeStart == this.appointments[i].timeStart) {
-          this.buttons[j].cursor = "not-allowed";
-          this.buttons[j].background = "red";
-          break;
-        }
-        else{
-          this.buttons[j].cursor = "pointer";
-          this.buttons[j].background = "green";
+      console.log(appointments);
+      this.appointments = appointments;
+      for (let i = 0; i < this.appointments["length"]; i++) {
+        for (let j = 0; j < this.buttons.length; j++) {
+          if (this.buttons[j].start == this.appointments[i].startTime) {
+            this.buttons[j].cursor = "not-allowed";
+            this.buttons[j].background = "red";
+            break;
+          } else {
+            this.buttons[j].cursor = "pointer";
+            this.buttons[j].background = "green";
+          }
         }
       }
-    }
-  });
+    });
   }
 
-  pickAppointment(date, timeStart) {
-    console.log(date);
-    console.log(timeStart);
-    this.appointmentService.pickAppointment(date, timeStart).subscribe(
-    );
+  pickAppointment(date, startTime, value) {
+    let timeZoneDifference= (Number(value)+2) //Add 2 hours because of the timezone time difference
+    let start = new Date(date.getTime() + (timeZoneDifference*60*60*1000)) //Add the time to the date
+    console.log(start)
+    let end = new Date(start.getTime() + (15*60*1000)); //Add 15min to the start time
+    this.appointmentService.pickAppointment(date, start, startTime, end).subscribe(res => this.getAppointments(date));
   }
-
 }

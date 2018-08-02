@@ -12,6 +12,6 @@
     <div>
         <button *ngFor="let item of buttons" [disabled]="item.background == 'red'" [ngStyle]="{'cursor': item.cursor, 'background': item.background}"
             class="btn btn-default" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="top"
-            (confirm)="pickAppointment(picker, item.timeStart)" (cancel)="cancelClicked = true">{{item.timeStart}}</button>
+            (confirm)="pickAppointment(picker, item.start, item.value)" (cancel)="cancelClicked = true">{{item.start}}</button>
     </div>
 </div>
