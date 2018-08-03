@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AppointmentdetailsComponent } from './reception/appointmentdetails/appointmentdetails.component';
 import { NewstaffComponent } from './admin/newstaff/newstaff.component';
 import { StockComponent } from './admin/stock/stock.component';
+import { VetComponent } from './vet/vet.component';
 
 export const routes: Routes = [
   { path:'signup', component: SignupComponent},
@@ -22,5 +23,6 @@ export const routes: Routes = [
   { path:'admin', component: AdminComponent},
   { path:'appointmentdetails/:id', component: AppointmentdetailsComponent},
   { path:'newstaff', component: NewstaffComponent},
-  { path:'stock', component: StockComponent}
+  { path:'stock', component: StockComponent},
+  { path:'vet', component: VetComponent}
 ];

@@ -10,6 +10,13 @@ import { StaffService } from "../../../services/staff.service";
 export class NewstaffComponent implements OnInit {
   constructor(private staffService: StaffService, private router: Router) {}
 
+  username: string;
+  password: string;
+  name: string;
+  surname: string;
+  email: string;
+  error: string;
+
   ngOnInit() {}
 
   newStaff(

@@ -37,6 +37,15 @@ export class PetService {
     ); 
   }
 
+  getMyPets(id) {
+    return this.http.post(`${BASEURL}/api/pets/getMyPets`, id, this.options).pipe(
+      map((res: Response) => {
+        return res.json();
+      }),
+      catchError(e => of(this.errorHandler(e)))
+    );
+  }
+
   newPet(info): Observable<object> {
     return this.http
       .post(`${BASEURL}/api/pets/newPet`, info, this.options)

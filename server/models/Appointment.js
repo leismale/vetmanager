@@ -8,9 +8,11 @@ const appointmentSchema = new Schema({
   start: { type: String, required: true },
   end: { type: String },
   price: String,
+  closed: { type: Boolean, default: false },
   invoice: String,
-  treatment: { type: Schema.Types.ObjectId, ref: "Treatment" },
-  startTime: String
+  content: { type: String },
+  startTime: String,
+  url: String
 }, {
   timestamps: {
     createdAt: 'created_at',

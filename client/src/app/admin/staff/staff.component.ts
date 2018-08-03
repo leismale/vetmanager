@@ -7,7 +7,10 @@ import { StaffService } from '../../../services/staff.service';
   styleUrls: ['./staff.component.css']
 })
 export class StaffComponent implements OnInit {
-  staff;
+
+  staff: object;
+  search: string;
+  
   constructor(public staffService: StaffService) {
     this.getAllStaff();
    }

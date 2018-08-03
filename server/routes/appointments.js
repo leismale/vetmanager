@@ -28,7 +28,7 @@ router.post("/bookAppointment", (req, res, next) => {
     startTime: req.body.startTime
   });
 
-  appointmentInfo.save(err => {
+  appointmentInfo.save((err, appointment) => {
     if (err) {
       return res.status(500).json(err);
     }
@@ -36,17 +36,27 @@ router.post("/bookAppointment", (req, res, next) => {
       return res.status(400).json(appointmentInfo);
     }
 
-    return res.status(200).json(appointmentInfo);
+    appointment
+      .update({
+        url: `http://localhost:4200/appointmentdetails/${appointmentInfo._id}`
+      })
+      .then(appointment => res.status(200).json(appointment));
   });
 });
 
 router.get("/getDetails/:id", (req, res, next) => {
   appointmentId = req.params.id;
   Appointments.findById(appointmentId)
-  .populate("user")
-  .then(appointment => {
-    return res.status(200).json(appointment);
-  });
+    .populate({
+      path: "user",
+      populate: {
+        path: "pets"
+      }
+    })
+    .then(appointment => {
+      console.log(appointment);
+      return res.status(200).json(appointment);
+    });
 });
 
 router.post("/updateAppointment", (req, res, next) => {
@@ -56,6 +66,29 @@ router.post("/updateAppointment", (req, res, next) => {
     title: req.body.title,
     start: req.body.start,
     end: req.body.end
+  };
+
+  Appointments.findByIdAndUpdate(appointmentId, appointmentInfo, { new: true })
+    .then(appointment => {
+      console.log(appointment);
+      res.status(200).json(appointment);
+    })
+    .catch(e => {
+      res.status(500).json({
+        status: "error",
+        error: e.message
+      });
+    });
+});
+
+router.post("/closeAppointment", (req, res, next) => {
+  console.log(req.body);
+  console.log("hola")
+  const appointmentId = req.body.appointmentId;
+  let appointmentInfo = {
+    // weight: req.body.weight,
+    content: req.body.content,
+    closed: true
   };
 
   Appointments.findByIdAndUpdate(appointmentId, appointmentInfo, { new: true })

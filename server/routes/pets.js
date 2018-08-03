@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Pet = require("../models/Pet");
+const Customer = require("../models/Customer");
 
 router.get("/getAllPets", (req, res, next) => {
   Pet.find().then(pets => {
@@ -9,26 +10,31 @@ router.get("/getAllPets", (req, res, next) => {
 });
 
 router.post("/newPet", (req, res, next) => {
-  const petInfo = new Pet({
-    user: req.body.username,
-    name: req.body.name,
-    surname: req.body.surname,
-    email: req.body.email,
-    petName: req.body.petName,
-    species: req.body.species,
-    color: req.body.color,
-    weight: req.body.weight
-  });
+  Customer.findOne({username: req.body.owner})
+    .then(customer => {
 
-  petInfo.save(err => {
-    if (err) {
-      return res.status(500).json(err);
-    }
-    if (petInfo.errors) {
-      return res.status(400).json(petInfo);
-    }
+      const petInfo = new Pet({
+        owner: customer._id,
+        name: req.body.name,
+        species: req.body.species,
+        color: req.body.color,
+        weight: req.body.weight
+      });
+      petInfo.save((err, pet) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        if (petInfo.errors) {
+          return res.status(400).json(petInfo);
+        }
+        console.log(pet)
+        customer.update({pets: [pet._id]}).then( pet => {
 
-    return res.status(200).json(petInfo);
+          console.log(pet)
+          res.status(200).json(petInfo);
+        }
+        )
+      })
   });
 });
 
@@ -36,6 +42,16 @@ router.get("/getPet/:id", (req, res, next) => {
   petId = req.params.id;
   Pet.findById(petId).then(pet => {
     return res.status(200).json(pet);
+  });
+});
+
+router.post("/getMyPets", (req, res, next) => {
+  customerId = req.body._id;
+  Customer.findById(customerId)
+  .populate("pets")
+  .then(customer => {
+    console.log(customer)
+    return res.status(200).json(customer);
   });
 });
 

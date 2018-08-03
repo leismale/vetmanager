@@ -22,8 +22,27 @@
         <button (click)="updateAppointment(item.title, start, end)"> Change details </button>
       </form>
       <p class="error"> {{ error }} </p>
+    </div>
+  </div>
 
-
+  <div *ngIf="sessionService.user.role == 'vet'">
+    
+    <div *ngIf="item">
+        <div *ngFor="let item of item.user.pets">
+          {{item.name}}
+          {{item.weight}}
+          {{item.color}}
+        </div>
+      <form>
+        <h2>Appointment details</h2>
+        <label>Weight</label>
+        <input type="text" [(ngModel)]="weight" name="weight" />
+        <label>Description</label>
+        <input type="text" [(ngModel)]="description" name="description" />
+        <br>
+        <button (click)="closeAppointment(weight, description)">Submit</button>
+      </form>
+      <p class="error"> {{ error }} </p>
     </div>
   </div>
 

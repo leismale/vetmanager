@@ -8,7 +8,11 @@ import { CustomerService } from "../../../services/customer.service";
   styleUrls: ["./search.component.css"]
 })
 export class SearchComponent implements OnInit {
-  items;
+  items: object;
+  customers: string;
+  search: string;
+  pets: object;
+
   constructor(
     private petService: PetService,
     private customerService: CustomerService

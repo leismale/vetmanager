@@ -8,7 +8,9 @@ import { AppointmentService } from '../../../services/appointment.service';
 })
 export class AppointmentsComponent implements OnInit {
 
-  appointments;
+  appointments: string;
+  search: string;
+  picker: string;
 
   constructor(private appointmentService: AppointmentService) { }
 

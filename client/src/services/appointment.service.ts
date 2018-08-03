@@ -89,4 +89,17 @@ export class AppointmentService {
         catchError(e => of(this.errorHandler(e)))
       );
   }
+
+
+  closeAppointment(appointmentId, weight, content){
+    return this.http
+      .post(`${BASEURL}/api/appointments/closeAppointment`, { appointmentId, weight, content }, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
+  
 }

@@ -1,25 +1,17 @@
 <form>
   <h2> Signup </h2>
   <label> Username </label>
-  <input type="text" [(ngModel)]="username" name="username" />
+  <input type="text" [(ngModel)]="owner" name="owner" />
   <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="password" name="password" />
-  <label> Name </label>
-  <input type="text" [(ngModel)]="name" name="name" />
-  <label> Surname </label>
-  <input type="text" [(ngModel)]="surname" name="surname" />
-  <label> Email </label>
-  <input type="email" [(ngModel)]="email" name="email" />
   <h2>Pet</h2>
   <label> Name </label>
-  <input type="text" [(ngModel)]="petName" name="petName" />
+  <input type="text" [(ngModel)]="name" name="name" />
   <label> Species </label>
   <input type="text" [(ngModel)]="species" name="species" />
   <label> Color </label>
   <input type="text" [(ngModel)]="color" name="color" />
   <label> Weight </label>
   <input type="text" [(ngModel)]="weight" name="weight" />
-  <button (click)="newPet(username, password, name, surname, email, petName, species, color, weight)"> SIGNUP </button>
+  <button (click)="newPet(owner, name, species, color, weight)"> SIGNUP </button>
 </form>
 <p class="error"> {{ error }} </p>

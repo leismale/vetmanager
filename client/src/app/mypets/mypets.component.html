@@ -1,3 +1,9 @@
-<p>
-  Listado de pets
-</p>
+<div *ngIf="pets">
+  <div *ngFor="let pet of pets.pets">
+    {{pet.name}}
+    <br>
+    {{pet.color}}
+    <br>
+    {{pet.weight}}
+  </div>
+</div>

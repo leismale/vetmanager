@@ -9,27 +9,26 @@ import { Router } from "@angular/router";
 })
 export class NewpetComponent implements OnInit {
   constructor(public petService: PetService, public router: Router) {}
-  newPetInfo;
+  newPetInfo: object;
+  owner: string;
+  name: string;
+  species: string;
+  color: string;
+  weight: string;
+  error: string;
+
   ngOnInit() {}
 
   newPet(
-    username: string,
-    password: string,
+    owner: string,
     name: string,
-    surname: string,
-    email: string,
-    petName: string,
     species: string,
     color: string,
     weight: string
   ) {
     this.newPetInfo = {
-      username,
-      password,
+      owner,
       name,
-      surname,
-      email,
-      petName,
       species,
       color,
       weight

@@ -34,6 +34,8 @@ import { NewstaffComponent } from './admin/newstaff/newstaff.component';
 import { StaffcalendarComponent } from './admin/staffcalendar/staffcalendar.component';
 import { StockComponent } from './admin/stock/stock.component';
 import { StaffService } from "../services/staff.service";
+import { VetComponent } from './vet/vet.component';
+import { CustomerComponent } from "./customer/customer.component";
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { StaffService } from "../services/staff.service";
     StaffComponent,
     NewstaffComponent,
     StaffcalendarComponent,
-    StockComponent
+    StockComponent,
+    VetComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,

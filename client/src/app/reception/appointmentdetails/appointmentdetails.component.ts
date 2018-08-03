@@ -9,8 +9,10 @@ import { AppointmentService } from "../../../services/appointment.service";
   styleUrls: ["./appointmentdetails.component.css"]
 })
 export class AppointmentdetailsComponent implements OnInit {
-  itemId;
-  item;
+  itemId: string;
+  item: string;
+  picker: string;
+  search: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +38,14 @@ export class AppointmentdetailsComponent implements OnInit {
       .updateAppointment(this.itemId, title, start, end)
       .subscribe(() => {
         this.router.navigate(["admin"]);
+      });
+  }
+
+  closeAppointment(weight, content) {
+    this.appointmentService
+      .closeAppointment(this.itemId, weight, content)
+      .subscribe(() => {
+        this.router.navigate(["vet"]);
       });
   }
 }

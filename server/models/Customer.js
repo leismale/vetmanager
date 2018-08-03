@@ -18,7 +18,7 @@ const customerSchema = new Schema(
     postcode: String,
     appointment: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
     invoices: { type: Schema.Types.ObjectId, ref: "Invoice" },
-    pets: { type: Schema.Types.ObjectId, ref: "Pet" },
+    pets: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
     confirmationCode: { type: String, default: false }
   },
   {

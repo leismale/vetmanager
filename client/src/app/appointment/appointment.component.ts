@@ -13,6 +13,11 @@ import { AppointmentService } from "../../services/appointment.service";
   styleUrls: ["./appointment.component.css"]
 })
 export class AppointmentComponent implements OnInit {
+
+  search: string;
+  picker: string;
+  
+
   public nextDate: any;
   public startAt = new Date();
   public min = new Date();
