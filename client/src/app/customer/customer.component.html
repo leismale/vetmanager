@@ -1,3 +1,23 @@
-<p>
-  Para cambiar password, profile picture, email, address...
-</p>
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Change settings</h1>
+    <hr class="my-4">
+    <form>
+      <h2> </h2>
+      <label> Password </label>
+      <input type="password" [(ngModel)]="password" name="password" />
+      <br>
+      <label> Name </label>
+      <input type="text" [(ngModel)]="name" name="name" />
+      <br>
+      <label> Surname </label>
+      <input type="text" [(ngModel)]="surname" name="surname" />
+      <br>
+      <label> Email </label>
+      <input type="email" [(ngModel)]="email" name="email" />
+      <br>
+      <button (click)="changeSettings(username, password, name, surname, email)"> Change settings </button>
+    </form>
+    <p class="error"> {{ error }} </p>
+  </div>
+</div>

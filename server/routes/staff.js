@@ -11,7 +11,7 @@ router.get("/getAllStaff", (req, res, next) => {
 
 router.post("/newstaff", (req, res, next) => {
   const { username, password, name, surname, email } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   // Check for empty user/password/name/surname/email
   if (!username || !password || !name || !surname || !email) {
     next(new Error("You must provide valid credentials"));
@@ -33,10 +33,17 @@ router.post("/newstaff", (req, res, next) => {
         email
       }).save();
     })
-    .then(user => res.json(user)) // Answer JSON
-    .catch(e => next(e));
+    .then((err, user) => {
+      console.log(err);
+      console.log(user);
+      res.json(user); // Answer JSON
+    })
+    .catch(e => {
+      console.log(e);
+      next(e);
+    });
 });
-/* 
+
 router.get("/getStaff/:id", (req, res, next) => {
   staffId = req.params.id;
   Staff.findById(staffId).then(staff => {
@@ -48,6 +55,7 @@ router.post("/updateStaff", (req, res, next) => {
   console.log(req.body);
   const username = req.body.username;
   let staffInfo = {
+    username: req.body.newUsername,
     name: req.body.name,
     surname: req.body.surname,
     email: req.body.email
@@ -65,5 +73,5 @@ router.post("/updateStaff", (req, res, next) => {
       });
     });
 });
- */
+
 module.exports = router;

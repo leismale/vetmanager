@@ -10,31 +10,30 @@ router.get("/getAllPets", (req, res, next) => {
 });
 
 router.post("/newPet", (req, res, next) => {
-  Customer.findOne({username: req.body.owner})
-    .then(customer => {
-
-      const petInfo = new Pet({
-        owner: customer._id,
-        name: req.body.name,
-        species: req.body.species,
-        color: req.body.color,
-        weight: req.body.weight
+  Customer.findOne({ username: req.body.owner }).then(customer => {
+    const petInfo = new Pet({
+      owner: customer._id,
+      name: req.body.name,
+      species: req.body.species,
+      color: req.body.color,
+      weight: {
+        weight: req.body.weight,
+        date: new Date()
+      }
+    });
+    petInfo.save((err, pet) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      if (petInfo.errors) {
+        return res.status(400).json(petInfo);
+      }
+      console.log(pet);
+      customer.update({ $push: { pets: pet._id } }).then(pet => {
+        console.log(pet);
+        res.status(200).json(petInfo);
       });
-      petInfo.save((err, pet) => {
-        if (err) {
-          return res.status(500).json(err);
-        }
-        if (petInfo.errors) {
-          return res.status(400).json(petInfo);
-        }
-        console.log(pet)
-        customer.update({pets: [pet._id]}).then( pet => {
-
-          console.log(pet)
-          res.status(200).json(petInfo);
-        }
-        )
-      })
+    });
   });
 });
 
@@ -48,21 +47,24 @@ router.get("/getPet/:id", (req, res, next) => {
 router.post("/getMyPets", (req, res, next) => {
   customerId = req.body._id;
   Customer.findById(customerId)
-  .populate("pets")
-  .then(customer => {
-    console.log(customer)
-    return res.status(200).json(customer);
-  });
+    .populate("pets")
+    .exec((err, customer) => {
+      console.log(customer);
+      return res.status(200).json(customer);
+    });
 });
 
 router.post("/updatePet", (req, res, next) => {
-  console.log(req.body)
+  console.log(req.body);
   const name = req.body.name;
   let petInfo = {
     name: req.body.name,
     species: req.body.species,
     color: req.body.color,
-    weigth: req.body.weigth
+    weight: [{
+        weight: req.body.weight,
+        date: new Date()
+    }]
   };
 
   Pet.findOneAndUpdate({ name: name }, petInfo, { new: true })

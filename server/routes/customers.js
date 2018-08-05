@@ -10,7 +10,14 @@ router.get("/getAllCustomers", (req, res, next) => {
 
 router.get("/getCustomer/:id", (req, res, next) => {
   customerId = req.params.id;
-  Customer.findById(customerId).then(customer => {
+  Customer.findById(customerId)
+  .populate({
+    path: "pets",
+    populate: {
+      path: "name"
+    }
+  })
+  .then(customer => {
     return res.status(200).json(customer);
   });
 });

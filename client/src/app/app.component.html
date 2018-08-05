@@ -1,46 +1,71 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1 *ngIf="sessionService.user">Welcome {{ sessionService.user.username }}!</h1>
-</div>
+</div> -->
 
-<div *ngIf="sessionService.user">
-  <ul>
-    <li *ngIf="sessionService.user.role == 'customer' ">
-      <a [routerLink]="['/appointment']">Book an appointment</a>
-      <br>
-      <a [routerLink]="['/mypets']">My pets</a>
-      <br>
-      <a [routerLink]="['/settings']">Settings</a>
-    </li>
-    <li *ngIf="sessionService.user.role == 'admin' ">
-      <a [routerLink]="['/reception']">Clinic Dashboard</a>
-      <a [routerLink]="['/admin']">Personal Dashboard</a>
-      <a [routerLink]="['/stock']">Stock Dashboard</a>
-      <a [routerLink]="['/newstaff']">New staff</a>
-    </li>
-    <li *ngIf="sessionService.user.role == 'vet' ">
-      <a [routerLink]="['/vet']">Dashboard</a>
-    </li>
-    <li *ngIf="sessionService.user.role == 'receptionist' ">
-      <a [routerLink]="['/reception']">Dashboard</a>
-      <br>
-      <a [routerLink]="['/newpet']">New pet</a>
-    </li>
-    <li>
-      <a href="#" (click)="logout()">Log out</a>
-    </li>
-  </ul>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" [routerLink]="['']">Vet Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<div *ngIf="!sessionService.user">
-  <ul>
-    <li>
-      <a [routerLink]="['/signup']">Sign up</a>
-    </li>
-    <li>
-      <a [routerLink]="['/login']">Log in</a>
-    </li>
-  </ul>
-</div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="sessionService.user">
+    <ul class="navbar-nav mr-auto" *ngIf="sessionService.user.role == 'customer' ">
+      <li class="nav-item">
+        <a [routerLink]="['/appointment']" class="nav-link">Book an appointment</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/mypets']" class="nav-link">My pets</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/myappointments']" class="nav-link">My appoinments</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/settings']" class="nav-link">Settings</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="logout()" href="#" class="nav-link">Log out</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto" *ngIf="sessionService.user.role == 'admin' ">
+      <li class="nav-item">
+        <a [routerLink]="['/reception']" class="nav-link">Clinic Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/admin']" class="nav-link">Personal Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/newstaff']" class="nav-link">New staff</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="logout()" href="#" class="nav-link">Log out</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto" *ngIf="sessionService.user.role == 'receptionist' || sessionService.user.role == 'vet' ">
+      <li class="nav-item">
+        <a [routerLink]="['/reception']" class="nav-link">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/newpet']" class="nav-link">New pet</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="logout()" href="#" class="nav-link">Log out</a>
+      </li>
+    </ul>
+  <span *ngIf="sessionService.user" class="nav-item">{{ sessionService.user.username }}</span>
+  </div>
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="!sessionService.user">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a [routerLink]="['/signup']" class="nav-link">Sign up</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/login']" class="nav-link">Log in</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
 <router-outlet></router-outlet>

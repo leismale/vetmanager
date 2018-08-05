@@ -29,13 +29,15 @@ import { CalendarModule } from "ap-angular-fullcalendar";
 import * as $ from "jquery";
 import { AdminComponent } from "./admin/admin.component";
 import { AppointmentdetailsComponent } from "./reception/appointmentdetails/appointmentdetails.component";
-import { StaffComponent } from './admin/staff/staff.component';
-import { NewstaffComponent } from './admin/newstaff/newstaff.component';
-import { StaffcalendarComponent } from './admin/staffcalendar/staffcalendar.component';
-import { StockComponent } from './admin/stock/stock.component';
+import { StaffComponent } from "./admin/staff/staff.component";
+import { NewstaffComponent } from "./admin/newstaff/newstaff.component";
+import { StaffcalendarComponent } from "./admin/staffcalendar/staffcalendar.component";
 import { StaffService } from "../services/staff.service";
-import { VetComponent } from './vet/vet.component';
+import { VetComponent } from "./vet/vet.component";
 import { CustomerComponent } from "./customer/customer.component";
+import { HomeComponent } from "./home/home.component";
+import { MyappointmentsComponent } from "./myappointments/myappointments.component";
+import { NgxPopperModule } from "ngx-popper";
 
 @NgModule({
   declarations: [
@@ -56,9 +58,10 @@ import { CustomerComponent } from "./customer/customer.component";
     StaffComponent,
     NewstaffComponent,
     StaffcalendarComponent,
-    StockComponent,
     VetComponent,
-    CustomerComponent
+    CustomerComponent,
+    HomeComponent,
+    MyappointmentsComponent
   ],
   imports: [
     BrowserModule,
@@ -72,9 +75,16 @@ import { CustomerComponent } from "./customer/customer.component";
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: "danger" // set defaults here
     }),
-    CalendarModule
+    CalendarModule,
+    NgxPopperModule
   ],
-  providers: [SessionService, AppointmentService, PetService, CustomerService, StaffService],
+  providers: [
+    SessionService,
+    AppointmentService,
+    PetService,
+    CustomerService,
+    StaffService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

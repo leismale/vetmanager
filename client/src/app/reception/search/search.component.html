@@ -1,10 +1,17 @@
-<div class="form">
-    <input (click)="getAllPets()" type="radio" name="search" [(ngModel)]="pets" value="pets"/> Pets
-    <input (click)="getAllCustomers()" type="radio" name="search" [(ngModel)]="customers" value="customers"/> Customers
-    <br>
-    <label for="search">Search</label>
-    <input type="text" [(ngModel)]="search">
-</div>
-<div *ngFor="let item of items | filter:'name':search">
-  <a [routerLink]="['/details', item._id]">{{item.name}} {{item.surname}}</a>
-</div>
+<div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">Search</h1>
+      <hr class="my-4">
+      <div class="text-center">
+          <input (click)="getAllPets()" type="radio" name="search" [(ngModel)]="pets" value="pets"/> Pets
+          <input (click)="getAllCustomers()" type="radio" name="search" [(ngModel)]="customers" value="customers"/> Customers
+          <br>
+          <label for="search">Search</label>
+          <input type="text" [(ngModel)]="search">
+      </div>
+      <hr class="my-4">
+      <div *ngFor="let item of items | filter:'name':search">
+          <a [routerLink]="['/details', item._id]">{{item.name}} {{item.surname}}</a>
+        </div>
+    </div>
+  </div>

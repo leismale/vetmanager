@@ -37,6 +37,17 @@ export class AppointmentService {
       );
   }
 
+  getMyAppointments(user) {
+    return this.http
+      .post(`${BASEURL}/api/appointments/getMyAppointments/`, user, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
+
   getAppointments(date): Observable<object> {
     return this.http
       .post(
@@ -79,9 +90,13 @@ export class AppointmentService {
       );
   }
 
-  updateAppointment(appointmentId, title, start, end){
+  updateAppointment(appointmentId, title, start, end) {
     return this.http
-      .post(`${BASEURL}/api/appointments/updateAppointment`, { appointmentId, title, start, end }, this.options)
+      .post(
+        `${BASEURL}/api/appointments/updateAppointment`,
+        { appointmentId, title, start, end },
+        this.options
+      )
       .pipe(
         map((res: Response) => {
           return res.json();
@@ -90,10 +105,13 @@ export class AppointmentService {
       );
   }
 
-
-  closeAppointment(appointmentId, weight, content){
+  closeAppointment(appointmentId, weight, content) {
     return this.http
-      .post(`${BASEURL}/api/appointments/closeAppointment`, { appointmentId, weight, content }, this.options)
+      .post(
+        `${BASEURL}/api/appointments/closeAppointment`,
+        { appointmentId, weight, content },
+        this.options
+      )
       .pipe(
         map((res: Response) => {
           return res.json();
@@ -101,5 +119,4 @@ export class AppointmentService {
         catchError(e => of(this.errorHandler(e)))
       );
   }
-  
 }

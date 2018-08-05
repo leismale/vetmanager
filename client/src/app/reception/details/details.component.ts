@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CustomerService } from "../../../services/customer.service";
 import { PetService } from "../../../services/pet.service";
 import { SessionService } from "../../../services/session.service";
+import { StaffService } from "../../../services/staff.service";
 
 @Component({
   selector: "app-details",
@@ -17,7 +18,8 @@ export class DetailsComponent implements OnInit {
     private customerService: CustomerService,
     private petService: PetService,
     public sessionService: SessionService,
-    private router: Router
+    private router: Router,
+    private staffService: StaffService
   ) {
     this.getDetails();
   }
@@ -29,8 +31,15 @@ export class DetailsComponent implements OnInit {
     this.customerService.getCustomer(this.itemId).subscribe(customer => {
       if (!customer) {
         this.petService.getPet(this.itemId).subscribe(pet => {
-          this.item = pet;
-          console.log(this.item);
+          if (!pet) {
+            this.staffService.getStaff(this.itemId).subscribe(staff => {
+              this.item = staff;
+              console.log(this.item)
+            });
+          } else {
+            this.item = pet;
+            console.log(this.item);
+          }
         });
       } else {
         this.item = customer;
@@ -42,15 +51,21 @@ export class DetailsComponent implements OnInit {
   updateCustomer(username, name, surname, email) {
     this.customerService
       .updateCustomer(username, name, surname, email)
-      .subscribe( () => {
+      .subscribe(() => {
+        this.router.navigate(["admin"]);
+      });
+  }
+
+  updateStaff(username, name, surname, email) {
+    this.staffService
+      .updateStaff(username, name, surname, email)
+      .subscribe(() => {
         this.router.navigate(["admin"]);
       });
   }
 
   updatePet(name, species, color, weight) {
-    this.petService
-    .updatePet(name, species, color, weight)
-    .subscribe(() => {
+    this.petService.updatePet(name, species, color, weight).subscribe(() => {
       this.router.navigate(["admin"]);
     });
   }

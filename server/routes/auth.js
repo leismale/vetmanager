@@ -74,4 +74,25 @@ router.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
 
+router.post("/changeSettings", (req, res, next) => {
+  console.log(req.body);
+  const { usernameId, password, name, surname, email } = req.body;
+
+  Customer.findByIdAndUpdate(
+    usernameId,
+    { usernameId, password, name, surname, email },
+    { new: true }
+  )
+    .then(user => {
+      console.log(user);
+      res.status(200).json(user);
+    })
+    .catch(e => {
+      res.status(500).json({
+        status: "error",
+        error: e.message
+      });
+    });
+});
+
 module.exports = router;

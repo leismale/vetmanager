@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  NgZone,
-  ApplicationRef
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { AppointmentService } from "../../services/appointment.service";
 
 @Component({
@@ -13,10 +7,9 @@ import { AppointmentService } from "../../services/appointment.service";
   styleUrls: ["./appointment.component.css"]
 })
 export class AppointmentComponent implements OnInit {
-
   search: string;
   picker: string;
-  
+  appointments;
 
   public nextDate: any;
   public startAt = new Date();
@@ -26,7 +19,7 @@ export class AppointmentComponent implements OnInit {
   public popoverMessage: string = "Popover description";
   public confirmClicked: boolean = false;
   public cancelClicked: boolean = false;
-  appointments;
+
   buttons = [
     {
       start: "9:00",
@@ -78,11 +71,7 @@ export class AppointmentComponent implements OnInit {
     return day !== 0 && day !== 6;
   };
 
-  constructor(
-    public appointmentService: AppointmentService,
-    private ngZone: NgZone,
-    private appRef: ApplicationRef
-  ) {}
+  constructor(public appointmentService: AppointmentService) {}
 
   ngOnInit() {
     this.getNextDate();
@@ -96,7 +85,8 @@ export class AppointmentComponent implements OnInit {
     });
   }
 
-  update() { //Si hay tiempo revisarlo para refactorizar (un solo for)
+  update() {
+    //Si hay tiempo revisarlo para refactorizar (un solo for)
     this.buttons.forEach(e => {
       e.cursor = "pointer";
       e.background = "green";

@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">My pets</h1>
+    <p class="lead">Choose a day</p>
+    <hr class="my-4">
+    <div *ngIf="appointments">
+      <div *ngFor="let appointment of appointments.appointment">
+        <p>{{appointment.start | date: 'hh:mm'}}</p>
+        <p>{{appointment.end | date: 'hh:mm'}}</p>
+        <p>{{appointment.date | date: 'dd/MM'}}</p>
+        <p>{{appointment.content}}</p>
+        <hr class="my-4">
+      </div>
+    </div>
+  </div>
+</div>

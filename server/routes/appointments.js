@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Appointments = require("../models/Appointment");
+const Customer = require("../models/Customer");
 
 router.get("/getAllAppointments", (req, res, next) => {
   Appointments.find().then(appointments => {
@@ -29,6 +30,17 @@ router.post("/bookAppointment", (req, res, next) => {
   });
 
   appointmentInfo.save((err, appointment) => {
+    Customer.findByIdAndUpdate(req.user._id, {$push: {appointment: appointment._id}}, {new: true})
+    .then(customer => {
+      console.log(customer);
+      res.status(200).json(customer, appointment);
+    })
+    .catch(e => {
+      res.status(500).json({
+        status: "error",
+        error: e.message
+      });
+    });
     if (err) {
       return res.status(500).json(err);
     }
@@ -57,6 +69,16 @@ router.get("/getDetails/:id", (req, res, next) => {
       console.log(appointment);
       return res.status(200).json(appointment);
     });
+});
+
+router.post("/getMyAppointments", (req, res, next) => {
+  customerId = req.body._id;
+  Customer.findById(customerId)
+  .populate('appointment')
+  .exec((err,customer) => {
+    console.log(customer)
+    return res.status(200).json(customer);
+  });
 });
 
 router.post("/updateAppointment", (req, res, next) => {

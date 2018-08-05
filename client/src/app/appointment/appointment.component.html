@@ -1,17 +1,22 @@
-<div class="example-wrapper" (click)="getAppointments(picker)">
-    <owl-date-time-inline [(ngModel)]="picker" [min]="min" [max]="max" [owlDateTimeFilter]="myFilter" [firstDayOfWeek]="1" pickerType="calendar"
-        ></owl-date-time-inline>
-</div>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Book an appointment</h1>
+        <p class="lead">Choose a day</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <div class="text-center">
+            <owl-date-time-inline [(ngModel)]="picker" [min]="min" [max]="max" [owlDateTimeFilter]="myFilter" [firstDayOfWeek]="1" pickerType="calendar"
+                (click)="getAppointments(picker)"></owl-date-time-inline>
+        </div>
 
-<br>
-<br>
-<br>
-<div *ngIf="appointments">
-    <h3>Available appointments on the {{picker | date: 'dd of MMM'}}</h3>
+        <div *ngIf="appointments" class="text-center">
+            <p class="lead">Available appointments on the {{picker | date: 'dd of MMM'}}</p>
+            <div>
+                <button *ngFor="let item of buttons" [disabled]="item.background == 'red'" [ngStyle]="{'cursor': item.cursor, 'background': item.background}"
+                    class="btn btn-default" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
+                    placement="top" (confirm)="pickAppointment(picker, item.start, item.value)" (cancel)="cancelClicked = true">{{item.start}}</button>
+            </div>
+        </div>
 
-    <div>
-        <button *ngFor="let item of buttons" [disabled]="item.background == 'red'" [ngStyle]="{'cursor': item.cursor, 'background': item.background}"
-            class="btn btn-default" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="top"
-            (confirm)="pickAppointment(picker, item.start, item.value)" (cancel)="cancelClicked = true">{{item.start}}</button>
     </div>
 </div>

@@ -37,22 +37,6 @@ export class StaffService {
       );
   }
 
-  getAppointments(date): Observable<object> {
-    return this.http
-      .post(
-        `${BASEURL}/api/appointments/newAppointment`,
-        { date },
-        this.options
-      )
-      .pipe(
-        map((res: Response) => {
-          return res.json();
-        }),
-        catchError(e => of(this.errorHandler(e)))
-      );
-  }
-
-
   getAllAppointments() {
     return this.http
       .get(`${BASEURL}/api/appointments/getAllAppointments/`, this.options)
@@ -64,25 +48,12 @@ export class StaffService {
       );
   }
 
-
   newStaff(username, password, name, surname, email): Observable<object> {
-    console.log(username)
-    return this.http
-      .post(`${BASEURL}/api/staff/newstaff`, { username, password, name, surname, email }, this.options)
-      .pipe(
-        map((res: Response) => {
-          return res.json();
-        }),
-        catchError(e => of(this.errorHandler(e)))
-      );
-  }
-/* 
-  pickAppointment(date, start, startTime, end): Observable<object> {
-    console.log(startTime);
+    console.log(username);
     return this.http
       .post(
-        `${BASEURL}/api/appointments/bookAppointment`,
-        { date, start, startTime, end },
+        `${BASEURL}/api/staff/newstaff`,
+        { username, password, name, surname, email },
         this.options
       )
       .pipe(
@@ -93,9 +64,9 @@ export class StaffService {
       );
   }
 
-  getDetails(id) {
+  getStaff(id) {
     return this.http
-      .get(`${BASEURL}/api/appointments/getDetails/${id}`, this.options)
+      .get(`${BASEURL}/api/staff/getStaff/${id}`, this.options)
       .pipe(
         map((res: Response) => {
           return res.json();
@@ -104,14 +75,18 @@ export class StaffService {
       );
   }
 
-  updateAppointment(appointmentId, title, start, end){
+  updateStaff(username, name, surname, email) {
     return this.http
-      .post(`${BASEURL}/api/appointments/updateAppointment`, { appointmentId, title, start, end }, this.options)
+      .post(
+        `${BASEURL}/api/staff/updateStaff`,
+        { username, name, surname, email },
+        this.options
+      )
       .pipe(
         map((res: Response) => {
           return res.json();
         }),
         catchError(e => of(this.errorHandler(e)))
       );
-  } */
+  }
 }

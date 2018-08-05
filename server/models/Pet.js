@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Customer = require("../models/Customer");
 
 const petSchema = new Schema(
   {
@@ -9,14 +10,17 @@ const petSchema = new Schema(
     breed: String,
     age: String,
     color: String,
-    weight: String,
+    weight: [{
+      weight: Number,
+      date: Date
+    }],
     chip: String,
-    vaccination: String,
-    nextVaccination: {
-      date: Date,
-      name: String
-    },
-    treatment: { type: Schema.Types.ObjectId, ref: "Treatment" },
+    // vaccination: String,
+    // nextVaccination: {
+    //   date: Date,
+    //   name: String
+    // },
+    // treatment: { type: Schema.Types.ObjectId, ref: "Treatment" },
     profilePic: String
   },
   {

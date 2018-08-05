@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Pet = require("../models/Pet");
+
 
 const customerSchema = new Schema(
   {
@@ -17,7 +19,7 @@ const customerSchema = new Schema(
     address: String,
     postcode: String,
     appointment: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
-    invoices: { type: Schema.Types.ObjectId, ref: "Invoice" },
+    // invoices: { type: Schema.Types.ObjectId, ref: "Invoice" },
     pets: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
     confirmationCode: { type: String, default: false }
   },

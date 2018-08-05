@@ -11,6 +11,7 @@ const { BASEURL } = environment;
 interface UserObject {
   username: string;
   role: string;
+  _id: string;
 }
 
 @Injectable()
@@ -76,5 +77,18 @@ export class SessionService {
       }),
       catchError(e => of(this.errorHandler(e)))
     );
+  }
+
+  changeSettings(usernameId: string, password: string, name:string, surname:string, email:string): Observable<object> {
+    return this.http
+      .post(`${BASEURL}/api/auth/changeSettings`, { usernameId, password, name, surname, email }, this.options)
+      .pipe(
+        map((res: Response) => {
+          let data = res.json();
+          this.user = data.user;
+          return this.user;
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
   }
 }
