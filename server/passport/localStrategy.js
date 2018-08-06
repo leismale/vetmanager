@@ -14,21 +14,20 @@ passport.use(
           Customer.findOne({ email }) //If it doesnt find the username, it checks if there is a user with the email provided
             .then(user => {
               if (!user) {
-                Staff.findOne({ username }).then(user => {
-                  //Staff login
-                  console.log(user);
-                  console.log(username);
-                  console.log(password);
-                  if (!user) {
-                    throw new Error("Incorrect Username");
-                  }
-                  if (!bcrypt.compareSync(password, user.password)) {
-                    throw new Error("Incorrect Password");
-                  } else {
-                    console.log();
-                    return next(null, user);
-                  }
-                });
+                Staff.findOne({ username }) //Staff login
+                  .then(user => {
+                    console.log(user)
+                    console.log(password)
+                    if (!user) {
+                      throw new Error("Incorrect Username");
+                    }
+                    if (!bcrypt.compareSync(password, user.password)) {
+                      console.log("mal")
+                      throw new Error("Incorrect Password");
+                    } else {
+                      return next(null, user);
+                    }
+                  })
               } else {
                 throw new Error("Incorrect Username");
               }
@@ -37,7 +36,7 @@ passport.use(
               } else {
                 return next(null, user);
               }
-            });
+            })
         } else {
           if (!user) throw new Error("Incorrect Username");
           if (!bcrypt.compareSync(password, user.password)) {

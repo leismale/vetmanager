@@ -2,21 +2,21 @@
   <div class="jumbotron">
     <h1 class="display-4">Change settings</h1>
     <hr class="my-4">
-    <form>
+    <form (ngSubmit)="changeSettings(username, password, name, surname, email)" ngNativeValidate>
       <h2> </h2>
       <label> Password </label>
-      <input type="password" [(ngModel)]="password" name="password" />
+      <input type="password" [(ngModel)]="password" name="password" required />
       <br>
       <label> Name </label>
-      <input type="text" [(ngModel)]="name" name="name" />
+      <input type="text" [(ngModel)]="name" name="name" required />
       <br>
       <label> Surname </label>
-      <input type="text" [(ngModel)]="surname" name="surname" />
+      <input type="text" [(ngModel)]="surname" name="surname" required />
       <br>
       <label> Email </label>
-      <input type="email" [(ngModel)]="email" name="email" />
+      <input type="email" [(ngModel)]="email" name="email" required />
       <br>
-      <button (click)="changeSettings(username, password, name, surname, email)"> Change settings </button>
+      <button> Change settings </button>
     </form>
     <p class="error"> {{ error }} </p>
   </div>

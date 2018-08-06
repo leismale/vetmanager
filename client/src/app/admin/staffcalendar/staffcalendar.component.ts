@@ -8,59 +8,48 @@ import { StaffService } from "../../../services/staff.service";
 })
 export class StaffcalendarComponent implements OnInit {
   calendarOptions: Object = {
-    height: 500,
-    fixedWeekCount: false,
-    editable: true,
     header: {
-      left: "prev,next today",
-      center: "title",
-      right: "month,agendaDay,agendaFourDay,listMonth"
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,listYear'
     },
-    eventLimit: true, // allow "more" link when too many events
-    events: "",
-    views: {
-      agendaFourDay: {
-        type: "agenda",
-        duration: { days: 5 },
-        buttonText: "Week"
-      }
-    },
-    businessHours: {
-      dow: [1, 2, 3, 5],
-      start: "9:00",
-      end: "18:00"
-    },
-    weekends: false,
-    slotDuration: "00:15",
-    minTime: "9:00",
-    maxTime: "18:30",
-    defaultView: "agendaDay"
-    /* [
-      {
-        title: "All Day Event",
-        start: "2018-08-01"
-      },
-      {
-        title: "Long Event",
-        start: "2016-09-07",
-        end: "2016-09-10"
-      }
-    ] */
-  };
 
+    displayEventTime: false, // don't show the time column in list view
+
+    // THIS KEY WON'T WORK IN PRODUCTION!!!
+    // To make your own Google API key, follow the directions here:
+    // http://fullcalendar.io/docs/google_calendar/
+    googleCalendarApiKey: "AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE",
+
+    // US Holiday
+    events: 'https://www.googleapis.com/calendar/v3/calendars/mt1t5hndp1j78vo7s174sqtsqs@group.calendar.google.com/events?callback=events&key=AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE&singleEvents=true&maxResults=9999',
+    /* [
+      https://www.googleapis.com/calendar/v3/calendars/mt1t5hndp1j78vo7s174sqtsqs@group.calendar.google.com&key=AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE?start=2018-07-29&end=2018-09-09&_=1533548420219
+      https://www.googleapis.com/calendar/v3/calendars/mt1t5hndp1j78vo7s174sqtsqs@group.calendar.google.com/events&key=AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE?start=2018-07-29&end=2018-09-09&_=1533548654174
+      https://www.googleapis.com/calendar/v3/calendars/en.usa%23holiday%40group.v.calendar.google.com/events?callback=jQuery33108245836771098642_1533547571773&key=AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE&timeMin=2018-07-28T00%3A00%3A00Z&timeMax=2018-09-10T00%3A00%3A00Z&singleEvents=true&maxResults=9999&_=1533547571774
+    ] */
+
+
+    
+  };
   constructor(public staffService: StaffService) {
     this.getEvents();
+
   }
 
   onCalendarInit(initialized: boolean) {
     console.log("Calendar initialized");
+    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.calendarOptions)
+
+  }
 
   getEvents() { //This is going to be holidays
     this.staffService.getAllAppointments().subscribe(appointments => {
-      this.calendarOptions["events"] = appointments;
+      console.log(appointments);
     });
   }
 }

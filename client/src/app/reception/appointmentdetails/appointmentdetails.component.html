@@ -17,16 +17,16 @@
     <div *ngIf="sessionService.user">
       <div *ngIf="sessionService.user.role == 'admin'">
         <div *ngIf="item">
-          <form>
+          <form (ngSubmit)="updateAppointment(item.title, start, end)" ngNativeValidate>
             <h2>Appointment details</h2>
             <label> Customer </label>
-            <input type="text" [(ngModel)]="item.title" name="title" />
+            <input type="text" [(ngModel)]="item.title" name="title" required />
             <br>
             <label> Start </label>
-            <input type="text" [(ngModel)]="start" name="start" />
+            <input type="text" [(ngModel)]="start" name="start" required />
             <label> End </label>
-            <input type="text" [(ngModel)]="end" name="end" />
-            <button (click)="updateAppointment(item.title, start, end)"> Change details </button>
+            <input type="text" [(ngModel)]="end" name="end" required />
+            <button type="submit"> Change details </button>
           </form>
           <p class="error"> {{ error }} </p>
         </div>
@@ -36,19 +36,18 @@
         <div *ngIf="item">
           <div *ngFor="let item of item.user.pets">
           </div>
-          <form>
+          <form (ngSubmit)="closeAppointment(weight, description)" ngNativeValidate>
             <h2>Appointment details</h2>
             <label>Weight</label>
-            <input type="text" [(ngModel)]="weight" name="weight" />
+            <input type="text" [(ngModel)]="weight" name="weight" required />
             <label>Description</label>
-            <input type="text" [(ngModel)]="description" name="description" />
+            <input type="text" [(ngModel)]="description" name="description" required />
             <br>
-            <button (click)="closeAppointment(weight, description)">Submit</button>
+            <button type="submit">Submit</button>
           </form>
           <p class="error"> {{ error }} </p>
         </div>
       </div>
     </div>
   </div>
-
 </div>

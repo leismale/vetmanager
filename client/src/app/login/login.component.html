@@ -5,15 +5,15 @@
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <div class="text-center">
-      <form>
+      <form (ngSubmit)="login(username,password)" ngNativeValidate>
         <label> Username </label>
-        <input type="text" [(ngModel)]="username" name="username" />
+        <input type="text" [(ngModel)]="username" name="username" required/>
         <br>
         <label> Password </label>
-        <input type="password" [(ngModel)]="password" name="password" />
-        <button (click)="login(username,password)"> login </button>
+        <input type="password" [(ngModel)]="password" name="password" required />
+        <button> Login </button>
       </form>
-      <p class="error"> {{ error }} </p>
+      <p class="error"> {{ message }} </p>
     </div>
   </div>
 </div>

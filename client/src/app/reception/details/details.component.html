@@ -48,7 +48,7 @@
           </div>
 
           <div *ngIf="item.species">
-            <form>
+            <form (ngSubmit)="updatePet(item.name, item.species, item.color, item.weight)" ngNativeValidate>
               <h2>Pet details</h2>
               <label> Name </label>
               <input type="text" [(ngModel)]="item.name" name="petName" />
@@ -58,7 +58,7 @@
               <input type="text" [(ngModel)]="item.color" name="color" />
               <label> Weight </label>
               <input type="text" [(ngModel)]="item.weight" name="weight" />
-              <button (click)="updatePet(item.name, item.species, item.color, item.weight)"> Change pet details </button>
+              <button> Change pet details </button>
             </form>
             <p class="error"> {{ error }} </p>
           </div>

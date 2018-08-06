@@ -4,7 +4,7 @@ const Appointments = require("../models/Appointment");
 const Customer = require("../models/Customer");
 
 router.get("/getAllAppointments", (req, res, next) => {
-  Appointments.find().then(appointments => {
+  Appointments.find({closed: false}).then(appointments => {
     // Appointments.find({}, {"title":1, "start":1, "_id": 0}).then(appointments => {
     return res.status(200).json(appointments);
   });

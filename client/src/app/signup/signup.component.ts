@@ -7,8 +7,7 @@ import { Router } from "../../../node_modules/@angular/router";
   templateUrl: "./signup.component.html",
   styleUrls: ["./signup.component.css"]
 })
-export class SignupComponent implements OnInit {
-  constructor(private sessionService: SessionService, private router: Router) {}
+export class SignupComponent{
 
   username: string;
   password: string;
@@ -17,7 +16,7 @@ export class SignupComponent implements OnInit {
   email: string;
   error: string;
 
-  ngOnInit() {}
+  constructor(private sessionService: SessionService, private router: Router) {}
 
   signup(
     username: string,

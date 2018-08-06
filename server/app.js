@@ -95,7 +95,7 @@ app.use('/api/pets', petsRouter);
 app.use('/api/customers', customersRouter);
 app.use('/api/staff', staffRouter);
 app.use(express.static(__dirname + '/dist'))
-app.get('*', (req, res) =>  res.sendFile(path.join(__dirname, 'public/dist/client/index.html')));
-app.use('/', express.static(__dirname + 'public/dist/client'));
+app.get('*', (req, res) =>  res.sendFile(path.join(__dirname, '/index.html')));
+app.use('/', express.static(__dirname + 'public/'));
 
 module.exports = app;
