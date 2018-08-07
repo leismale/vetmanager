@@ -6,8 +6,8 @@
       <form (ngSubmit)="newPet(owner, name, species, color, weight)" ngNativeValidate>
         <label> Username </label>
         <label>Your first ng-select</label>
-        <ng-select class="custom" [items]="customers" bindLabel="username">
-        </ng-select>
+<!--         <ng-select class="custom" [items]="customers" bindLabel="username">
+         </ng-select> -->
         <input type="text" [(ngModel)]="owner" name="owner" required />
         <br>
         <h2>Pet</h2>
