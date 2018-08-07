@@ -4,5 +4,6 @@
 <script type='text/javascript' src='https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.js'></script>
 <script type='text/javascript' src='https://fullcalendar.io/releases/fullcalendar/3.9.0/gcal.min.js'></script>
 
-
-<angular2-fullcalendar [options]="calendarOptions" (initialized)="onCalendarInit($event)" id="calendar"></angular2-fullcalendar>
+<div *ngIf="calendarOptions.events[0]">
+    <angular2-fullcalendar [options]="calendarOptions" (initialized)="onCalendarInit($event)" id="calendar"></angular2-fullcalendar>
+</div>
