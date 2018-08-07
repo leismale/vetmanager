@@ -1,0 +1,37 @@
+.firstSection{
+    background: url(../../assets/back.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    margin-bottom: 50px;
+}
+
+.firstSectionContent{
+    position: relative;
+    top: 30%;
+    left: 10%;
+    color: white;
+}
+
+.btn-firstSection{
+    background-color: #282250;
+    color: white;
+}
+
+.btn-home{
+    background-color: white;
+    color: #282250;
+    border: 2px solid #282250;
+}
+
+.card{
+    height: 375px;
+    margin-bottom: 50px;
+}
+
+.section2Heading{
+    text-align: center;
+    font-style: italic;
+    color: #282250;
+    margin: 20px;
+}

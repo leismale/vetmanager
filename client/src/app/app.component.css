@@ -1,3 +1,20 @@
 :host /deep/ .container{
-    max-width: 1600px !important;
+    max-width: 1400px !important;
+}
+
+.navbar{
+    background-color: #282250 !important;
+}
+
+a{
+    color: white !important;
+    cursor: pointer;
+}
+
+span{
+    color: white !important;
+}
+
+.modal-content{
+    background-color: rgba(200,200,200,0.9)
 }

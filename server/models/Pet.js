@@ -10,10 +10,7 @@ const petSchema = new Schema(
     breed: String,
     age: String,
     color: String,
-    weight: [{
-      weight: Number,
-      date: Date
-    }],
+    weight: Number,
     chip: String,
     // vaccination: String,
     // nextVaccination: {

@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const Appointments = require("../models/Appointment");
 const Customer = require("../models/Customer");
+const Pet = require("../models/Pet");
 
 router.get("/getAllAppointments", (req, res, next) => {
-  Appointments.find({closed: false}).then(appointments => {
+  Appointments.find({ closed: false }).then(appointments => {
     // Appointments.find({}, {"title":1, "start":1, "_id": 0}).then(appointments => {
     return res.status(200).json(appointments);
   });
@@ -30,17 +31,21 @@ router.post("/bookAppointment", (req, res, next) => {
   });
 
   appointmentInfo.save((err, appointment) => {
-    Customer.findByIdAndUpdate(req.user._id, {$push: {appointment: appointment._id}}, {new: true})
-    .then(customer => {
-      console.log(customer);
-      res.status(200).json(customer, appointment);
-    })
-    .catch(e => {
-      res.status(500).json({
-        status: "error",
-        error: e.message
+    Customer.findByIdAndUpdate(
+      req.user._id,
+      { $push: { appointment: appointment._id } },
+      { new: true }
+    )
+      .then(customer => {
+        console.log(customer);
+        res.status(200).json(customer, appointment);
+      })
+      .catch(e => {
+        res.status(500).json({
+          status: "error",
+          error: e.message
+        });
       });
-    });
     if (err) {
       return res.status(500).json(err);
     }
@@ -50,7 +55,9 @@ router.post("/bookAppointment", (req, res, next) => {
 
     appointment
       .update({
-        url: `https://vetmngr.herokuapp.com/appointmentdetails/${appointmentInfo._id}`
+        url: `https://vetmngr.herokuapp.com/appointmentdetails/${
+          appointmentInfo._id
+        }`
       })
       .then(appointment => res.status(200).json(appointment));
   });
@@ -74,11 +81,11 @@ router.get("/getDetails/:id", (req, res, next) => {
 router.post("/getMyAppointments", (req, res, next) => {
   customerId = req.body._id;
   Customer.findById(customerId)
-  .populate('appointment')
-  .exec((err,customer) => {
-    console.log(customer)
-    return res.status(200).json(customer);
-  });
+    .populate("appointment")
+    .exec((err, customer) => {
+      console.log(customer);
+      return res.status(200).json(customer);
+    });
 });
 
 router.post("/updateAppointment", (req, res, next) => {
@@ -105,16 +112,30 @@ router.post("/updateAppointment", (req, res, next) => {
 
 router.post("/closeAppointment", (req, res, next) => {
   console.log(req.body);
-  console.log("hola")
   const appointmentId = req.body.appointmentId;
   let appointmentInfo = {
-    // weight: req.body.weight,
     content: req.body.content,
     closed: true
   };
 
+  let petInfo = {
+    weight: req.body.weight
+  };
+
   Appointments.findByIdAndUpdate(appointmentId, appointmentInfo, { new: true })
+    .populate({
+      path: "user",
+      populate: {
+        path: "pets"
+      }
+    })
     .then(appointment => {
+      Pet.findByIdAndUpdate(appointment.user.pets[0]._id, petInfo, {
+        new: true
+      }).then(pet => {
+        console.log(pet);
+      });
+
       console.log(appointment);
       res.status(200).json(appointment);
     })

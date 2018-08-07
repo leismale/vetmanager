@@ -29,8 +29,6 @@ export class SignupComponent{
     this.sessionService
       .signup(username, password, name, surname, email)
       .subscribe((user: any) => {
-        console.log(`WELCOME USER ${user.username}, register OK`);
-        console.log(user);
         this.router.navigate(["/"]);
       });
   }

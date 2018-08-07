@@ -16,10 +16,8 @@ router.post("/newPet", (req, res, next) => {
       name: req.body.name,
       species: req.body.species,
       color: req.body.color,
-      weight: {
-        weight: req.body.weight,
-        date: new Date()
-      }
+      weight: req.body.weight,
+      
     });
     petInfo.save((err, pet) => {
       if (err) {
