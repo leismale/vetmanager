@@ -9,53 +9,54 @@ import { RouteConfigLoadStart, Router } from "@angular/router";
   styleUrls: ["./calendar.component.css"]
 })
 export class CalendarComponent implements OnInit {
-
   calendarOptions: Object = {
     height: 500,
     fixedWeekCount: false,
     editable: true,
     header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month,agendaDay,agendaFourDay,listMonth'
+      left: "prev,next today",
+      center: "title",
+      right: "month,agendaDay,agendaFourDay,listMonth"
     },
     eventLimit: true,
     events: "",
     views: {
       agendaFourDay: {
-        type: 'agenda',
+        type: "agenda",
         duration: { days: 5 },
-        buttonText: 'Week'
+        buttonText: "Week"
       }
     },
     businessHours: {
-      dow: [ 1, 2, 3, 5 ],
-      start: '9:00',
-      end: '18:00',
+      dow: [1, 2, 3, 5],
+      start: "9:00",
+      end: "18:00"
     },
     weekends: false,
     slotDuration: "00:15",
     minTime: "9:00",
     maxTime: "18:30",
-    defaultView: "agendaDay",
-
+    defaultView: "agendaDay"
   };
 
-  constructor(public appointmentService: AppointmentService, public route: Router) {
-    this.getEvents()
+  constructor(
+    public appointmentService: AppointmentService,
+    public route: Router
+  ) {
+    this.getEvents();
   }
 
   onCalendarInit(initialized: boolean) {
     console.log("Calendar initialized");
   }
 
-  ngOnInit() {  }
+  ngOnInit() {}
 
-  getEvents(){
-    this.appointmentService.getAllAppointments().subscribe(appointments => {
-      this.calendarOptions["events"] = appointments;
-    })
+  getEvents() {
+    this.appointmentService
+      .getAllAppointments("false")
+      .subscribe(appointments => {
+        this.calendarOptions["events"] = appointments;
+      });
   }
-
-
 }

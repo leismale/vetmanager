@@ -3,21 +3,27 @@
     <h1 class="display-4">Signup</h1>
     <hr class="my-4">
     <div class="text-center">
-      <hr class="my-4">
       <form (ngSubmit)="newPet(owner, name, species, color, weight)" ngNativeValidate>
         <label> Username </label>
+        <label>Your first ng-select</label>
+        <ng-select class="custom" [items]="customers" bindLabel="username">
+        </ng-select>
         <input type="text" [(ngModel)]="owner" name="owner" required />
         <br>
         <h2>Pet</h2>
         <label> Name </label>
         <input type="text" [(ngModel)]="name" name="name" required />
+        <br>
         <label> Species </label>
         <input type="text" [(ngModel)]="species" name="species" required />
+        <br>
         <label> Color </label>
         <input type="text" [(ngModel)]="color" name="color" required />
+        <br>
         <label> Weight </label>
         <input type="text" [(ngModel)]="weight" name="weight" required />
-        <button type="submit"> Add pet </button>
+        <br>
+        <button (click)="newPet(owner, name, species, color, weight)" data-dismiss='modal'>Add pet</button>
       </form>
       <p class="error"> {{ error }} </p>
     </div>

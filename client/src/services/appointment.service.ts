@@ -26,9 +26,9 @@ export class AppointmentService {
     return e;
   }
 
-  getAllAppointments() {
+  getAllAppointments(state) {
     return this.http
-      .get(`${BASEURL}/api/appointments/getAllAppointments/`, this.options)
+      .post(`${BASEURL}/api/appointments/getAllAppointments/`, {state}, this.options)
       .pipe(
         map((res: Response) => {
           return res.json();

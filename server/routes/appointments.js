@@ -4,8 +4,10 @@ const Appointments = require("../models/Appointment");
 const Customer = require("../models/Customer");
 const Pet = require("../models/Pet");
 
-router.get("/getAllAppointments", (req, res, next) => {
-  Appointments.find({ closed: false }).then(appointments => {
+router.post("/getAllAppointments", (req, res, next) => {
+  console.log(req.body)
+  Appointments.find({ closed: req.body.state }).then(appointments => {
+    console.log(appointments)
     // Appointments.find({}, {"title":1, "start":1, "_id": 0}).then(appointments => {
     return res.status(200).json(appointments);
   });

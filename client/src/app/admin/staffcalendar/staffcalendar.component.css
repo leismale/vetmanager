@@ -1,0 +1,11 @@
+.calendarWrapper{
+    margin: 50px auto;
+}
+
+:host /deep/ .fc-icon-right-single-arrow:after {
+    top: 16% !important;
+}
+
+:host /deep/ .fc-icon-left-single-arrow:after {
+    top: 16% !important;
+}

@@ -31,7 +31,8 @@
         <a [routerLink]="['/admin']" class="nav-link">Personal Dashboard</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="['/newstaff']" class="nav-link">New staff</a>
+        <!--<a [routerLink]="['/newstaff']" class="nav-link">New staff</a>-->
+        <a class="nav-link" data-toggle="modal" data-target="#newStaff">New staff</a>
       </li>
       <li class="nav-item">
         <a (click)="logout()" href="#" class="nav-link">Log out</a>
@@ -42,7 +43,8 @@
         <a [routerLink]="['/reception']" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="['/newpet']" class="nav-link">New pet</a>
+        <!-- <a [routerLink]="['/newpet']" class="nav-link">New pet</a> -->
+        <a class="nav-link" data-toggle="modal" data-target="#newPet">New pet</a>
       </li>
       <li class="nav-item">
         <a (click)="logout()" href="#" class="nav-link">Log out</a>
@@ -68,7 +70,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLongTitle">Sign up</h3>
+          <h5 class="modal-title" id="exampleModalLongTitle">Sign up</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -87,22 +89,32 @@
   <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLongTitle">Log in</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
         <div class="modal-body">
           <app-login></app-login>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="newStaff" tabindex="-1" role="dialog" aria-labelledby="newStaffTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <app-newstaff></app-newstaff>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="newPet" tabindex="-1" role="dialog" aria-labelledby="newPetTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <app-newpet></app-newpet>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </nav>
 <router-outlet></router-outlet>

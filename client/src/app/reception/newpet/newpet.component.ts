@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PetService } from "../../../services/pet.service";
 import { Router } from "@angular/router";
+import { CustomerService } from "../../../services/customer.service";
 
 @Component({
   selector: "app-newpet",
@@ -8,7 +9,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./newpet.component.css"]
 })
 export class NewpetComponent implements OnInit {
-  constructor(public petService: PetService, public router: Router) {}
+  constructor(public petService: PetService, public router: Router, public customerService: CustomerService) {}
   newPetInfo: object;
   owner: string;
   name: string;
@@ -16,8 +17,11 @@ export class NewpetComponent implements OnInit {
   color: string;
   weight: string;
   error: string;
+  customers;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.customerService.getAllCustomers().subscribe(customers => this.customers = customers)
+  }
 
   newPet(
     owner: string,

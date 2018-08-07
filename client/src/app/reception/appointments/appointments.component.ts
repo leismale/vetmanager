@@ -15,7 +15,11 @@ export class AppointmentsComponent implements OnInit {
   constructor(private appointmentService: AppointmentService) { }
 
   ngOnInit() {
-    this.appointmentService.getAllAppointments().subscribe(appointments => this.appointments = appointments);
+    this.getAllAppointments('true')
   }
 
+
+  getAllAppointments(state) {
+    this.appointmentService.getAllAppointments(state).subscribe(appointments => this.appointments = appointments);
+  }
 }
