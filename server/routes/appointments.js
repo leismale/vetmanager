@@ -50,7 +50,7 @@ router.post("/bookAppointment", (req, res, next) => {
 
     appointment
       .update({
-        url: `http://localhost:4200/appointmentdetails/${appointmentInfo._id}`
+        url: `https://vetmngr.herokuapp.com/appointmentdetails/${appointmentInfo._id}`
       })
       .then(appointment => res.status(200).json(appointment));
   });

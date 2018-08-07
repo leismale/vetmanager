@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { StaffService } from "../../../services/staff.service";
+import { Http } from "@angular/http";
 
 @Component({
   selector: "app-staffcalendar",
@@ -7,49 +8,47 @@ import { StaffService } from "../../../services/staff.service";
   styleUrls: ["./staffcalendar.component.css"]
 })
 export class StaffcalendarComponent implements OnInit {
+  items;
+  itemsEvents;
+  newItem;
+
   calendarOptions: Object = {
     header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month,listYear'
+      left: "prev,next today",
+      center: "title",
+      right: "month,listYear"
     },
 
-    displayEventTime: false, // don't show the time column in list view
-
-    // THIS KEY WON'T WORK IN PRODUCTION!!!
-    // To make your own Google API key, follow the directions here:
-    // http://fullcalendar.io/docs/google_calendar/
-    googleCalendarApiKey: "AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE",
-
-    // US Holiday
-    events: 'https://www.googleapis.com/calendar/v3/calendars/mt1t5hndp1j78vo7s174sqtsqs@group.calendar.google.com/events?callback=events&key=AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE&singleEvents=true&maxResults=9999',
-    /* [
-      https://www.googleapis.com/calendar/v3/calendars/mt1t5hndp1j78vo7s174sqtsqs@group.calendar.google.com&key=AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE?start=2018-07-29&end=2018-09-09&_=1533548420219
-      https://www.googleapis.com/calendar/v3/calendars/mt1t5hndp1j78vo7s174sqtsqs@group.calendar.google.com/events&key=AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE?start=2018-07-29&end=2018-09-09&_=1533548654174
-      https://www.googleapis.com/calendar/v3/calendars/en.usa%23holiday%40group.v.calendar.google.com/events?callback=jQuery33108245836771098642_1533547571773&key=AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE&timeMin=2018-07-28T00%3A00%3A00Z&timeMax=2018-09-10T00%3A00%3A00Z&singleEvents=true&maxResults=9999&_=1533547571774
-    ] */
-
-
-    
+    displayEventTime: false,
+    events: []
   };
-  constructor(public staffService: StaffService) {
-    this.getEvents();
 
+  constructor(public staffService: StaffService, public http: Http) {
+    this.items = this.http //Call to Google calendar API, modify the response to get a compatible object with fullcalendar
+      .get(
+        "https://www.googleapis.com/calendar/v3/calendars/mt1t5hndp1j78vo7s174sqtsqs@group.calendar.google.com/events?callback=events&key=AIzaSyCZGB3FBTqHkpC8VvfFTwlmoWiUcvxN5rE&timeMin=2018-01-01T00%3A00%3A00Z&timeMax=2018-12-31T00%3A00%3A00Z&singleEvents=true&maxResults=9999"
+      )
+      .subscribe(res => {
+        this.items = res._body.replace(/items/i, 'events')
+        this.itemsEvents = JSON.parse(this.items.slice(23,this.items.length-2));
+
+        this.itemsEvents.events.forEach(e => {
+          this.newItem = {
+            title: e.summary,
+            start: e.start.date,
+            end: e.end.date,
+          }
+          this.calendarOptions["events"].push(this.newItem);
+        });
+
+      });
   }
 
   onCalendarInit(initialized: boolean) {
     console.log("Calendar initialized");
-    
-  }
-
-  ngOnInit() {
     console.log(this.calendarOptions)
-
   }
 
-  getEvents() { //This is going to be holidays
-    this.staffService.getAllAppointments().subscribe(appointments => {
-      console.log(appointments);
-    });
-  }
+  ngOnInit() { }
+
 }

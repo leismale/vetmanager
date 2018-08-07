@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AppointmentService } from "../../../services/appointment.service";
+import * as $ from "jquery";
+import { RouteConfigLoadStart, Router } from "@angular/router";
 
 @Component({
   selector: "app-calendar",
@@ -17,7 +19,7 @@ export class CalendarComponent implements OnInit {
       center: 'title',
       right: 'month,agendaDay,agendaFourDay,listMonth'
     },
-    eventLimit: true, // allow "more" link when too many events
+    eventLimit: true,
     events: "",
     views: {
       agendaFourDay: {
@@ -35,21 +37,11 @@ export class CalendarComponent implements OnInit {
     slotDuration: "00:15",
     minTime: "9:00",
     maxTime: "18:30",
-    defaultView: "agendaDay"
-    /* [
-      {
-        title: "All Day Event",
-        start: "2018-08-01"
-      },
-      {
-        title: "Long Event",
-        start: "2016-09-07",
-        end: "2016-09-10"
-      }
-    ] */
+    defaultView: "agendaDay",
+
   };
 
-  constructor(public appointmentService: AppointmentService) {
+  constructor(public appointmentService: AppointmentService, public route: Router) {
     this.getEvents()
   }
 
