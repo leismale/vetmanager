@@ -1,15 +1,28 @@
 <div class="container">
   <div class="jumbotron">
-    <h1 class="display-4">Staff</h1>
+    <h3>Staff</h3>
     <hr class="my-4">
     <div class="text-center">
       <label for="search">Search</label>
       <input type="text" [(ngModel)]="search">
     </div>
-    <hr class="my-4">
-
-    <div *ngFor="let person of staff | filter:'name':search">
-      <a [routerLink]="['/details', person._id]">{{person.name}} {{person.surname}}</a>
+    <div class="tableWrapper">
+      <table class="table table-striped" *ngIf="staff">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let person of staff | filter:'name':search">
+          <tr>
+            <td>
+              <a [routerLink]="['/details', person._id]">{{person.name}}</a>
+            </td>
+            <td>{{person.surname}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

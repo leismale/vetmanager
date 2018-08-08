@@ -1,17 +1,33 @@
 <div class="container">
     <div class="jumbotron">
-        <h1 class="display-4">Appointments</h1>
+        <h3>Appointments</h3>
         <hr class="my-4">
         <div class="text-center">
-            <input (click)="getAllAppointments('true')" type="radio" name="search" value="open" /> Open
-            <input (click)="getAllAppointments('false')" type="radio" name="search" value="closed" /> Closed
+            <input (click)="getAllAppointments('true')" type="radio" name="search" value="open" />
+            <span>Open</span>
+            <input (click)="getAllAppointments('false')" type="radio" name="search" value="closed" />
+            <span>Closed</span>
             <br>
             <label for="search">Search</label>
             <input type="text" [(ngModel)]="search">
         </div>
-        <hr class="my-4">
-        <div *ngFor="let appointment of appointments | filter: 'title':search">
-            <a [routerLink]="['/appointmentdetails', appointment._id]">{{appointment.title}} </a> {{appointment.start | date: 'dd/MM hh:mm'}}
-        </div>
+        <table class="table table-striped" *ngIf="appointments">
+            <thead>
+                <tr>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let appointment of appointments | filter: 'title':search">
+                <tr>
+                    <td>
+                        <a [routerLink]="['/appointmentdetails', appointment._id]">{{appointment.title}}</a>
+                    </td>
+                    <td>{{appointment.start | date: 'dd/MM'}}</td>
+                    <td>{{appointment.start | date: 'hh:mm'}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

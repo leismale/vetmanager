@@ -1,17 +1,33 @@
 <div class="container">
-    <div class="folder">
-      <h1 class="display-4">Search</h1>
-      <hr class="my-4">
-      <div class="text-center">
-          <input (click)="getAllPets()" type="radio" name="search" [(ngModel)]="pets" value="pets"/> Pets
-          <input (click)="getAllCustomers()" type="radio" name="search" [(ngModel)]="customers" value="customers"/> Customers
-          <br>
-          <label for="search">Search</label>
-          <input type="text" [(ngModel)]="search">
-      </div>
-      <hr class="my-4">
-      <div *ngFor="let item of items | filter:'name':search">
-          <a [routerLink]="['/details', item._id]">{{item.name}} {{item.surname}}</a>
+    <div class="jumbotron">
+        <h3>Search</h3>
+        <hr class="my-4">
+        <div class="text-center">
+            <input (click)="getAllPets()" type="radio" name="search" [(ngModel)]="pets" value="pets" />
+            <span>Pets</span>
+            <input (click)="getAllCustomers()" type="radio" name="search" [(ngModel)]="customers" value="customers" />
+            <span>Customers</span>
+            <br>
+            <label for="search">Search </label>
+            <input type="text" [(ngModel)]="search">
         </div>
+        <table class="table table-striped" *ngIf="items">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname/Owner</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of items | filter:'name':search" scope="row">
+                <tr>
+                    <td scope="row">
+                        <a [routerLink]="['/details', item._id]">{{item.name}}</a>
+                    </td>
+                    <td>{{item.surname}}
+                        <span *ngIf="item.owner">{{item.owner.name}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>

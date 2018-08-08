@@ -4,7 +4,9 @@ const Pet = require("../models/Pet");
 const Customer = require("../models/Customer");
 
 router.get("/getAllPets", (req, res, next) => {
-  Pet.find().then(pets => {
+  Pet.find()
+  .populate("owner")
+  .then(pets => {
     return res.status(200).json(pets);
   });
 });

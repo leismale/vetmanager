@@ -1,0 +1,26 @@
+.jumbotron {
+  background-color: white !important;
+  padding: 30px;
+  color: #282250 !important;
+
+  input {
+    color: #282250;
+    border-color: #282250;
+    margin: 10px;
+  }
+
+  span,
+  label,
+  h3,
+  a {
+    color: #282250 !important;
+    text-decoration: none;
+  }
+
+  tbody:nth-child(even) {
+    background: #CCC;
+  }
+  tbody:nth-child(odd) {
+    background: #fff;
+  }
+}
