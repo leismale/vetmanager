@@ -16,27 +16,25 @@ passport.use(
               if (!user) {
                 Staff.findOne({ username }) //Staff login
                   .then(user => {
-                    console.log(user)
-                    console.log(password)
+                    console.log(user);
+                    console.log(password);
                     if (!user) {
                       throw new Error("Incorrect Username");
                     }
                     if (!bcrypt.compareSync(password, user.password)) {
-                      console.log("mal")
+                      console.log("mal");
                       throw new Error("Incorrect Password");
                     } else {
                       return next(null, user);
                     }
-                  })
-              } else {
-                throw new Error("Incorrect Username");
+                  });
               }
               if (!bcrypt.compareSync(password, user.password)) {
                 throw new Error("Incorrect Password");
               } else {
                 return next(null, user);
               }
-            })
+            });
         } else {
           if (!user) throw new Error("Incorrect Username");
           if (!bcrypt.compareSync(password, user.password)) {
