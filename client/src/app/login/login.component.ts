@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   placeholderUser = "Username"
   placeholderPass = "Password"
+  username;
+  password;
   message: string;
 
   ngOnInit() {}
