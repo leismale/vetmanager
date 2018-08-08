@@ -38,9 +38,6 @@ export class NewpetComponent implements OnInit {
       weight
     };
     this.petService.newPet(this.newPetInfo).subscribe((user: any) => {
-      console.log(`WELCOME USER ${user.username}, register OK`);
-      console.log(user);
-      this.router.navigate(["/"]);
     });
   }
 }

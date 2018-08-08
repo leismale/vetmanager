@@ -8,8 +8,10 @@ import { SessionService } from "../services/session.service";
 })
 export class AppComponent {
   title = "app";
+  user;
   constructor(public sessionService: SessionService) {
-    sessionService.isLogged().subscribe();
+    sessionService.isLogged().subscribe(user => {console.log(user); console.log(sessionService.user);});
+    console.log("entra")
   }
 
   logout() {

@@ -5,10 +5,9 @@
     <div class="text-center">
       <form (ngSubmit)="newPet(owner, name, species, color, weight)" ngNativeValidate>
         <label> Username </label>
-        <label>Your first ng-select</label>
-<!--         <ng-select class="custom" [items]="customers" bindLabel="username">
-         </ng-select> -->
-        <input type="text" [(ngModel)]="owner" name="owner" required />
+        <select [(ngModel)]="owner" name="owner" required>
+          <option value="{{customer.username}}" *ngFor="let customer of customers">{{customer.username}}</option>
+        </select>
         <br>
         <h2>Pet</h2>
         <label> Name </label>
