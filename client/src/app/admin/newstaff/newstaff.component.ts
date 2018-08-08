@@ -5,7 +5,7 @@ import { StaffService } from "../../../services/staff.service";
 @Component({
   selector: "app-newstaff",
   templateUrl: "./newstaff.component.html",
-  styleUrls: ["./newstaff.component.css"]
+  styleUrls: ["./newstaff.component.scss"]
 })
 export class NewstaffComponent implements OnInit {
   constructor(private staffService: StaffService, private router: Router) {}

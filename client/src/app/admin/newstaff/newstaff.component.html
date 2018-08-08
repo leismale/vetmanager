@@ -1,23 +1,30 @@
 <div class="container">
   <div class="jumbotron">
-    <h1 class="display-4">New staff</h1>
-    <p class="lead">Choose a day</p>
+    <h3>New staff</h3>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <div class="text-center">
       <form (ngSubmit)="newStaff(username, password, name, surname, email)" ngNativeValidate>
-        <label> Username </label>
-        <input type="text" [(ngModel)]="username" name="username" required/>
-        <br>
-        <label> Password </label>
-        <input type="password" [(ngModel)]="password" name="password" required/>
-        <label> Name </label>
-        <input type="text" [(ngModel)]="name" name="name" required />
-        <label> Surname </label>
-        <input type="text" [(ngModel)]="surname" name="surname" required/>
-        <label> Email </label>
-        <input type="email" [(ngModel)]="email" name="email" required/>
-        <button (click)="newStaff(username, password, name, surname, email)" data-dismiss='modal'>Create staff</button>
+        <div class="form-group">
+          <span> Username </span>
+          <input type="text" [(ngModel)]="username" name="username" required/>
+        </div>
+        <div class="form-group">
+          <label> Password </label>
+          <input type="password" [(ngModel)]="password" name="password" required/>
+        </div>
+        <div class="form-group">
+          <label> Name </label>
+          <input type="text" [(ngModel)]="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label> Surname </label>
+          <input type="text" [(ngModel)]="surname" name="surname" required/>
+        </div>
+        <div class="form-group">
+          <label> Email </label>
+          <input type="email" [(ngModel)]="email" name="email" required/>
+        </div>
+        <button class="btn btn-home" (click)="newStaff(username, password, name, surname, email)" data-dismiss='modal'>Create staff</button>
       </form>
       <p class="error"> {{ error }} </p>
     </div>

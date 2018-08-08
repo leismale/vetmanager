@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container wrapper">
   <div class="jumbotron">
-    <h1 class="display-4">My pets</h1>
-    <p class="lead">Choose a day</p>
+    <h3>My pets</h3>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <div class="text-center" *ngIf="pets">
-      <div *ngFor="let pet of pets.pets">
-        <p>{{pet.name}}</p>
-        <p>{{pet.color}}</p>
-        <p>{{pet.weight}}</p>
-        <hr class="my-4">
+    <div class="text-center cardWrapper" *ngIf="pets">
+      <div class="card" style="width: 18rem;" *ngFor="let pet of pets.pets">
+        <img class="card-img-top" src="{{pet.profilePic}}" alt="Card image cap">
+        <div class="card-body">
+          <h4>{{pet.name}}</h4>
+          <p>Color: {{pet.color}}</p>
+          <p>Last weight: {{pet.weight}}kg</p>
+        </div>
       </div>
     </div>
   </div>

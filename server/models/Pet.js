@@ -18,7 +18,11 @@ const petSchema = new Schema(
     //   name: String
     // },
     // treatment: { type: Schema.Types.ObjectId, ref: "Treatment" },
-    profilePic: String
+    profilePic: {
+      type: String,
+      default:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlGEWpd_nau9_JeQF4Ar9usXBJGosKVEAMfnP6KtTT-ANsPLRupQ"
+    }
   },
   {
     timestamps: {

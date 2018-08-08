@@ -1,15 +1,14 @@
-<div class="container">
+<div class="container wrapper">
   <div class="jumbotron">
-    <h1 class="display-4">My pets</h1>
-    <p class="lead">Choose a day</p>
+    <h3>My appointments</h3>
     <hr class="my-4">
-    <div *ngIf="appointments">
-      <div *ngFor="let appointment of appointments.appointment">
-        <p>{{appointment.start | date: 'hh:mm'}}</p>
-        <p>{{appointment.end | date: 'hh:mm'}}</p>
-        <p>{{appointment.date | date: 'dd/MM'}}</p>
-        <p>{{appointment.content}}</p>
-        <hr class="my-4">
+    <div class="text-center cardWrapper" *ngIf="appointments">
+      <div class="card" style="width: 18rem;" *ngFor="let appointment of appointments.appointment">
+        <div class="card-body">
+          <p>Time: {{appointment.start | date: 'hh:mm'}}</p>
+          <p>Date: {{appointment.date | date: 'dd/MM'}}</p>
+          <p>Comments: {{appointment.content}}</p>
+        </div>
       </div>
     </div>
   </div>

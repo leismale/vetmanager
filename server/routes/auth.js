@@ -53,12 +53,12 @@ router.post("/login", (req, res, next) => {
     if (!theUser) next(failureDetails);
 
     // Return user and logged in
-    login(req, theUser).then(user => res.status(200).json(req.user));
+    login(req, theUser).then(user => {console.log(user + " auth login"); res.status(200).json(req.user)});
   })(req, res, next);
 });
 
 router.get("/currentuser", (req, res, next) => {
-  console.log(req.user);
+  console.log(req.user + " auth current user");
   if (req.user) {
     res.status(200).json(req.user);
   } else {
@@ -76,7 +76,6 @@ router.use((err, req, res, next) => {
 });
 
 router.post("/changeSettings", (req, res, next) => {
-  console.log(req.body);
   const { usernameId, password, name, surname, email } = req.body;
 
   Customer.findByIdAndUpdate(
@@ -85,7 +84,6 @@ router.post("/changeSettings", (req, res, next) => {
     { new: true }
   )
     .then(user => {
-      console.log(user);
       res.status(200).json(user);
     })
     .catch(e => {

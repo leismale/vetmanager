@@ -10,17 +10,17 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   constructor(private sessionService: SessionService, private router: Router) {}
 
-  username: string;
-  password: string;
+  placeholderUser = "Username"
+  placeholderPass = "Password"
   message: string;
 
   ngOnInit() {}
 
   login(username: string, password: string) {
     this.sessionService.login(username, password).subscribe(user => {
-      if (user["role"] == "admin") this.router.navigate(["admin"]);
       if (user["role"] == "customer") this.router.navigate([""]);
-      if (user["role"] == "rec" || "vet") this.router.navigate(["reception"]);
+      if (user["role"] == "admin") this.router.navigate(["admin"]);
+      if (user["role"] == "receptionist" || "vet") this.router.navigate(["reception"]);
     });
   }
 }

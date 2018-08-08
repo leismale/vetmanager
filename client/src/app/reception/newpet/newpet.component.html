@@ -1,6 +1,6 @@
 <div class="container">
   <div class="jumbotron">
-    <h1 class="display-4">Signup</h1>
+    <h3>Register new pet</h3>
     <hr class="my-4">
     <div class="text-center">
       <form (ngSubmit)="newPet(owner, name, species, color, weight)" ngNativeValidate>
@@ -10,7 +10,9 @@
         </select>
         <br>
         <h2>Pet</h2>
-        <label> Name </label>
+        <label> Name
+          <i class="material-icons">pets</i>
+        </label>
         <input type="text" [(ngModel)]="name" name="name" required />
         <br>
         <label> Species </label>

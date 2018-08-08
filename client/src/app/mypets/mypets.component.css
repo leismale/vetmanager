@@ -1,0 +1,14 @@
+.wrapper{
+    margin-top: 30px;
+}
+
+.cardWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card{
+    margin: 30px;
+}

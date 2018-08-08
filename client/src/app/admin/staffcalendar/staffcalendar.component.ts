@@ -13,6 +13,7 @@ export class StaffcalendarComponent implements OnInit {
   newItem;
 
   calendarOptions = {
+    height: 800,
     header: {
       left: "prev,next today",
       center: "title",

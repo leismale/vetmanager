@@ -15,8 +15,8 @@ export class AppointmentComponent implements OnInit {
   public startAt = new Date();
   public min = new Date();
   public max;
-  public popoverTitle: string = "Popover title";
-  public popoverMessage: string = "Popover description";
+  public popoverTitle: string = "Confirm the appointment";
+  public popoverMessage: string = "Click confirm to book this appointment or cancel to choose another one";
   public confirmClicked: boolean = false;
   public cancelClicked: boolean = false;
 
@@ -25,35 +25,35 @@ export class AppointmentComponent implements OnInit {
       start: "9:00",
       end: "9:15",
       cursor: "allowed",
-      background: "green",
+      background: "#95C03D",
       value: "9"
     },
     {
       start: "9:15",
       end: "9:30",
       cursor: "allowed",
-      background: "green",
+      background: "#95C03D",
       value: "9.25"
     },
     {
       start: "9:30",
       end: "9:45",
       cursor: "allowed",
-      background: "green",
+      background: "#95C03D",
       value: "9.5"
     },
     {
       start: "9:45",
       end: "10:00",
       cursor: "allowed",
-      background: "green",
+      background: "#95C03D",
       value: "9.75"
     },
     {
       start: "10:00",
       end: "10:15",
       cursor: "allowed",
-      background: "green",
+      background: "#95C03D",
       value: "10"
     }
   ];
@@ -86,10 +86,9 @@ export class AppointmentComponent implements OnInit {
   }
 
   update() {
-    //Si hay tiempo revisarlo para refactorizar (un solo for)
     this.buttons.forEach(e => {
       e.cursor = "pointer";
-      e.background = "green";
+      e.background = "#95C03D";
     });
     for (let i = 0; i < this.appointments["length"]; i++) {
       let button = this.buttons.find(
@@ -97,7 +96,7 @@ export class AppointmentComponent implements OnInit {
       );
       if (button) {
         button.cursor = "not-allowed";
-        button.background = "red";
+        button.background = "#C82333";
       }
     }
   }

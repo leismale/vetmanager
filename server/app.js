@@ -31,8 +31,8 @@ const app = express();
 
 // Middleware Setup
 var whitelist = [
-  'http://localhost:4200',
-  'http://vetmngr.herokuapp.com'
+  'https://vetmngr.herokuapp.com',
+  'http://localhost:4200'
 ];
 var corsOptions = {
   origin: function(origin, callback){

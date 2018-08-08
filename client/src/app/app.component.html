@@ -8,7 +8,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="sessionService.user">
     <ul class="navbar-nav mr-auto" *ngIf="sessionService.user.role == 'customer' ">
       <li class="nav-item">
-        <a [routerLink]="['/appointment']" class="nav-link">Book an appointment</a>
+        <!-- <a [routerLink]="['/appointment']" class="nav-link">Book an appointment</a> -->
+        <a class="nav-link" data-toggle="modal" data-target="#newAppointment">Book an appointment</a>
       </li>
       <li class="nav-item">
         <a [routerLink]="['/mypets']" class="nav-link">My pets</a>
@@ -17,7 +18,7 @@
         <a [routerLink]="['/myappointments']" class="nav-link">My appoinments</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="['/settings']" class="nav-link">Settings</a>
+        <a [routerLink]="['/settings']" class="nav-link">Account</a>
       </li>
       <li class="nav-item">
         <a (click)="logout()" href="#" class="nav-link">Log out</a>
@@ -69,18 +70,8 @@
   <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signupTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Sign up</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
         <div class="modal-body">
           <app-signup></app-signup>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -107,14 +98,27 @@
   </div>
 
   <div class="modal fade" id="newPet" tabindex="-1" role="dialog" aria-labelledby="newPetTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <app-newpet></app-newpet>
-          </div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <app-newpet></app-newpet>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="modal fade" id="newAppointment" tabindex="-1" role="dialog" aria-labelledby="newAppointmentTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+          <button type="button" class="btn btn-secondary header" data-dismiss="modal">
+            <i class="material-icons">close</i>
+          </button>
+        <div class="modal-body">
+          <app-appointment></app-appointment>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </nav>
 <router-outlet></router-outlet>

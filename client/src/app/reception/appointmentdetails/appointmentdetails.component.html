@@ -1,17 +1,16 @@
-<div class="container">
+<div class="container wrapper">
   <div class="jumbotron">
-    <h1 class="display-4">Appointment details</h1>
-    <p class="lead">Something</p>
-    <hr class="my-4">
+    <h3>Appointment details</h3>
     <div *ngIf="item">
-      <p>{{item.start | date: 'hh:mm'}}</p>
-      <p>{{item.end | date: 'hh:mm'}}</p>
-      <p>{{item.title}}</p>
-      <p>{{item.user.email}}</p>
+      <p>Time: {{item.start | date: 'hh:mm'}}</p>
+      <p>Customer: {{item.title}}</p>
+      <p>Customer email: {{item.user.email}}</p>
       <hr class="my-4">
-      <p>{{item.user.pets[0].name}}</p>
-      <p>{{item.user.pets[0].weight}}</p>
-      <p>{{item.user.pets[0].color}}</p>
+      <h4>Pet details</h4>
+      <p>Pet name: {{item.user.pets[0].name}}</p>
+      <p>Species: {{item.user.pets[0].species}}</p>
+      <p>Weight: {{item.user.pets[0].weight}}</p>
+      <p>Color: {{item.user.pets[0].color}}</p>
     </div>
 
     <div *ngIf="sessionService.user">
@@ -21,7 +20,6 @@
             <h2>Appointment details</h2>
             <label> Customer </label>
             <input type="text" [(ngModel)]="item.title" name="title" required />
-            <br>
             <label> Start </label>
             <input type="text" [(ngModel)]="start" name="start" required />
             <label> End </label>
@@ -42,7 +40,6 @@
             <input type="text" [(ngModel)]="weight" name="weight" required />
             <label>Description</label>
             <input type="text" [(ngModel)]="description" name="description" required />
-            <br>
             <button type="submit">Submit</button>
           </form>
           <p class="error"> {{ error }} </p>
