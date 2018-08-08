@@ -31,6 +31,7 @@ const app = express();
 
 // Middleware Setup
 var whitelist = [
+  '*',
   'http://localhost:4200',
   'https://vetmngr.herokuapp.com/'
 ];
