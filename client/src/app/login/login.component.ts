@@ -20,9 +20,13 @@ export class LoginComponent implements OnInit {
 
   login(username: string, password: string) {
     this.sessionService.login(username, password).subscribe(user => {
-      if (user["role"] == "customer") this.router.navigate([""]);
-      if (user["role"] == "admin") this.router.navigate(["admin"]);
-      if (user["role"] == "receptionist" || "vet") this.router.navigate(["reception"]);
+      if (user["role"] == "customer") {
+        this.router.navigate([""])
+      } else if (user["role"] == "admin") {
+        this.router.navigate(["admin"]);
+      } else{
+         this.router.navigate(["reception"]);
+      }
     });
   }
 }

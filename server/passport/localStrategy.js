@@ -19,10 +19,12 @@ passport.use(
               if (!bcrypt.compareSync(password, user.password)) {
                 throw new Error("Incorrect Password");
               } else {
+                console.log("---------------------------------------")
                 return next(null, user);
               }
             })
             .catch(e => {
+              console.log("ERROR")
               next(null, false, {
                 message: e.message
               });
@@ -34,6 +36,7 @@ passport.use(
             return next(null, user);
           }
         }
+        console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
       })
       .catch(e => {
         next(null, false, {

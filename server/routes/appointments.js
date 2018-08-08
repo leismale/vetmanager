@@ -7,7 +7,6 @@ const Pet = require("../models/Pet");
 router.post("/getAllAppointments", (req, res, next) => {
   console.log(req.body)
   Appointments.find({ closed: req.body.state }).then(appointments => {
-    console.log(appointments)
     // Appointments.find({}, {"title":1, "start":1, "_id": 0}).then(appointments => {
     return res.status(200).json(appointments);
   });
@@ -23,6 +22,7 @@ router.post("/newAppointment", (req, res, next) => {
 
 router.post("/bookAppointment", (req, res, next) => {
   console.log(req.body);
+  console.log(req.user)
   const appointmentInfo = new Appointments({
     user: req.user._id,
     title: req.user.username,
@@ -39,7 +39,6 @@ router.post("/bookAppointment", (req, res, next) => {
       { new: true }
     )
       .then(customer => {
-        console.log(customer);
         res.status(200).json(customer, appointment);
       })
       .catch(e => {

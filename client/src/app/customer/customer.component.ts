@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-customer",
   templateUrl: "./customer.component.html",
-  styleUrls: ["./customer.component.css"]
+  styleUrls: ["./customer.component.scss"]
 })
 export class CustomerComponent implements OnInit {
   constructor(private sessionService: SessionService, private router: Router) {}

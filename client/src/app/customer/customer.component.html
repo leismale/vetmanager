@@ -1,22 +1,32 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">Change settings</h1>
-    <hr class="my-4">
-    <form (ngSubmit)="changeSettings(username, password, name, surname, email)" ngNativeValidate>
-      <label> Password </label>
-      <input type="password" [(ngModel)]="password" name="password" required />
-      <br>
-      <label> Name </label>
+<div class="formWrapper">
+  <h3>Change settings</h3>
+  <hr class="my-4">
+  <form (ngSubmit)="changeSettings(username, password, name, surname, email)" ngNativeValidate>
+    <div class="form-group">
+      <label> Password
+        <i class="material-icons">lock</i>
+      </label>
+      <input type="password" [(ngModel)]="password" name="password" required minlength="4" />
+    </div>
+    <div class="form-group">
+      <label> Name
+        <i class="material-icons">person</i>
+      </label>
       <input type="text" [(ngModel)]="name" name="name" required />
-      <br>
-      <label> Surname </label>
+    </div>
+    <div class="form-group">
+      <label> Surname
+        <i class="material-icons">person</i>
+      </label>
       <input type="text" [(ngModel)]="surname" name="surname" required />
-      <br>
-      <label> Email </label>
+    </div>
+    <div class="form-group">
+      <label> Email
+        <i class="material-icons">alternate_email</i>
+      </label>
       <input type="email" [(ngModel)]="email" name="email" required />
-      <br>
-      <button> Change settings </button>
-    </form>
-    <p class="error"> {{ error }} </p>
-  </div>
+    </div>
+    <button class="btn btn-home"> Change settings </button>
+  </form>
+  <p class="error"> {{ error }} </p>
 </div>
