@@ -34,16 +34,13 @@ export class DetailsComponent implements OnInit {
           if (!pet) {
             this.staffService.getStaff(this.itemId).subscribe(staff => {
               this.item = staff;
-              console.log(this.item)
             });
           } else {
             this.item = pet;
-            console.log(this.item);
           }
         });
       } else {
         this.item = customer;
-        console.log(this.item);
       }
     });
   }

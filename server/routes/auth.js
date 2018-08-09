@@ -53,12 +53,11 @@ router.post("/login", (req, res, next) => {
     if (!theUser) next(failureDetails);
 
     // Return user and logged in
-    login(req, theUser).then(user => {console.log(user + " auth login"); res.status(200).json(req.user)});
+    login(req, theUser).then(user => res.status(200).json(req.user));
   })(req, res, next);
 });
 
 router.get("/currentuser", (req, res, next) => {
-  console.log(req.user + " auth current user");
   if (req.user) {
     res.status(200).json(req.user);
   } else {

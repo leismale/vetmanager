@@ -29,7 +29,6 @@ export class CustomerComponent implements OnInit {
     this.sessionService
       .changeSettings(usernameId, password, name, surname, email)
       .subscribe((user: any) => {
-        console.log(user);
         this.router.navigate(["/"]);
       });
   }

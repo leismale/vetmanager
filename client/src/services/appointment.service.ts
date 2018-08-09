@@ -64,7 +64,6 @@ export class AppointmentService {
   }
 
   pickAppointment(date, start, startTime, end): Observable<object> {
-    console.log(startTime);
     return this.http
       .post(
         `${BASEURL}/api/appointments/bookAppointment`,

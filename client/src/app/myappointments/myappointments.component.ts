@@ -18,7 +18,6 @@ export class MyappointmentsComponent implements OnInit {
       .getMyAppointments(this.sessionService.user)
       .subscribe(appointments => {
         this.appointments = appointments;
-        console.log(appointments);
       });
   }
 

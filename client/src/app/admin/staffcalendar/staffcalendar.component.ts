@@ -27,7 +27,6 @@ export class StaffcalendarComponent implements OnInit {
   constructor(public staffService: StaffService, public http: Http) {}
 
   onCalendarInit(initialized: boolean) {
-    console.log(this.calendarOptions);
     console.log("Calendar initialized");
   }
 

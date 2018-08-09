@@ -25,7 +25,6 @@ export class SignupComponent{
     surname: string,
     email: string
   ) {
-    console.log("signup....");
     this.sessionService
       .signup(username, password, name, surname, email)
       .subscribe((user: any) => {

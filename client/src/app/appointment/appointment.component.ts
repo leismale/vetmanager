@@ -79,7 +79,6 @@ export class AppointmentComponent implements OnInit {
 
   getAppointments(date) {
     this.appointmentService.getAppointments(date).subscribe(appointments => {
-      console.log(appointments);
       this.appointments = appointments;
       this.update();
     });
@@ -104,7 +103,6 @@ export class AppointmentComponent implements OnInit {
   pickAppointment(date, startTime, value) {
     let timeZoneDifference = Number(value) + 2; //Add 2 hours because of the timezone time difference
     let start = new Date(date.getTime() + timeZoneDifference * 60 * 60 * 1000); //Add the time to the date
-    console.log(start);
     let end = new Date(start.getTime() + 15 * 60 * 1000); //Add 15min to the start time
     this.appointmentService
       .pickAppointment(date, start, startTime, end)

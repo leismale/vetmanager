@@ -39,7 +39,7 @@ router.post("/bookAppointment", (req, res, next) => {
       { new: true }
     )
       .then(customer => {
-        res.status(200).json(customer, appointment);
+        res.status(200).json({customer, appointment});
       })
       .catch(e => {
         res.status(500).json({

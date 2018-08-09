@@ -51,7 +51,6 @@ export class PetService {
       .post(`${BASEURL}/api/pets/newPet`, info, this.options)
       .pipe(
         map((res: Response) => {
-            console.log(res)
           return res.json();
         }),
         catchError(e => of(this.errorHandler(e)))

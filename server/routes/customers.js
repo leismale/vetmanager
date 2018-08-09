@@ -23,7 +23,6 @@ router.get("/getCustomer/:id", (req, res, next) => {
 });
 
 router.post("/updateCustomer", (req, res, next) => {
-  console.log(req.body);
   const username = req.body.username;
   let customerInfo = {
     name: req.body.name,
@@ -33,7 +32,6 @@ router.post("/updateCustomer", (req, res, next) => {
 
   Customer.findOneAndUpdate({ username: username }, customerInfo, { new: true })
     .then(user => {
-      console.log(user);
       res.status(200).json(user);
     })
     .catch(e => {

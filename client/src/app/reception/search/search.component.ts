@@ -22,7 +22,6 @@ export class SearchComponent implements OnInit {
 
   getAllPets() {
     this.petService.getAllPets().subscribe(items => {
-      console.log(items)
       this.items = items;
     });
   }

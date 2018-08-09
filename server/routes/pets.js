@@ -28,9 +28,7 @@ router.post("/newPet", (req, res, next) => {
       if (petInfo.errors) {
         return res.status(400).json(petInfo);
       }
-      console.log(pet);
       customer.update({ $push: { pets: pet._id } }).then(pet => {
-        console.log(pet);
         res.status(200).json(petInfo);
       });
     });
@@ -49,13 +47,11 @@ router.post("/getMyPets", (req, res, next) => {
   Customer.findById(customerId)
     .populate("pets")
     .exec((err, customer) => {
-      console.log(customer);
       return res.status(200).json(customer);
     });
 });
 
 router.post("/updatePet", (req, res, next) => {
-  console.log(req.body);
   const name = req.body.name;
   let petInfo = {
     name: req.body.name,

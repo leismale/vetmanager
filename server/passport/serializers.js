@@ -9,10 +9,13 @@ passport.serializeUser((user, cb) => {
 passport.deserializeUser((id, cbo) => {
   Customer.findById(id)
     .then(user => {
-      Staff.findById(id)
-        .then(user => cbo(null, user))
-        .catch(err => cb(err));
-      if (user) cbo(null, user);
+      if (user) {
+        cbo(null, user);
+      } else {
+        Staff.findById(id)
+          .then(user => cbo(null, user))
+          .catch(err => cb(err));
+      }
     })
     .catch(err => cb(err));
 });
