@@ -10,6 +10,11 @@ import { StaffService } from "../../../services/staff.service";
 export class NewstaffComponent implements OnInit {
   constructor(private staffService: StaffService, private router: Router) {}
 
+  placeholderUser = "Username";
+  placeholderPass = "Password";
+  placeholderName = "Name";
+  placeholderSurname = "Surname";
+  placeholderEmail = "Email";
   username: string;
   password: string;
   name: string;

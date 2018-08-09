@@ -25,23 +25,19 @@
             <form (ngSubmit)="updateAppointment(item.title, start, end)" ngNativeValidate>
               <div class="form-group">
                 <label> Customer </label>
-              </div>
-              <div class="form-group">
                 <input type="text" [(ngModel)]="item.title" name="title" required />
               </div>
               <div class="form-group">
                 <label> Start </label>
-              </div>
-              <div class="form-group">
                 <input type="text" [(ngModel)]="start" name="start" required />
               </div>
               <div class="form-group">
                 <label> End </label>
-              </div>
-              <div class="form-group">
                 <input type="text" [(ngModel)]="end" name="end" required />
               </div>
-              <button type="submit" class="btn btn-home"> Change details </button>
+              <div class="form-group">
+                <button type="submit" class="btn btn-home"> Modify details </button>
+              </div>
             </form>
             <p class="error"> {{ error }} </p>
           </div>
@@ -50,19 +46,23 @@
         <div *ngIf="sessionService.user.role == 'vet'">
           <div *ngIf="item">
             <form (ngSubmit)="closeAppointment(weight, description)" ngNativeValidate>
-              <div class="form-group">
-                <label>Weight</label>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Weight</label>
+                  <input type="text" [(ngModel)]="weight" name="weight" required />
+                </div>
               </div>
-              <div class="form-group">
-                <input type="text" [(ngModel)]="weight" name="weight" required />
+              <div class="col-md-12">
+                <div class="form-group descriptionWrapper">
+                  <label>Description</label>
+                  <textarea [(ngModel)]="description" name="description" required class="description"> </textarea>
+                </div>
               </div>
-              <div class="form-group">
-                <label>Description</label>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-home">Close consultation</button>
+                </div>
               </div>
-              <div class="form-group">
-                <textarea [(ngModel)]="description" name="description" required class="description"> </textarea>
-              </div>
-              <button type="submit" class="btn btn-home">Close consultation</button>
             </form>
             <p class="error"> {{ error }} </p>
           </div>

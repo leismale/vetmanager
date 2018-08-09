@@ -54,13 +54,9 @@ router.post("/getMyPets", (req, res, next) => {
 router.post("/updatePet", (req, res, next) => {
   const name = req.body.name;
   let petInfo = {
-    name: req.body.name,
     species: req.body.species,
     color: req.body.color,
-    weight: [{
-        weight: req.body.weight,
-        date: new Date()
-    }]
+    weight: req.body.weight
   };
 
   Pet.findOneAndUpdate({ name: name }, petInfo, { new: true })

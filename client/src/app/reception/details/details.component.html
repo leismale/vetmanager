@@ -1,72 +1,81 @@
-<div class="container">
+<div class="container formWrapper">
   <div class="jumbotron">
-    <h1 class="display-4">Staff</h1>
+    <h3>Details</h3>
     <hr class="my-4">
 
     <div *ngIf="item">
       <div *ngIf="item.username">
         <!-- Check if it's a customer, then show properties -->
-        <p>{{item.name}}</p>
-        <p>{{item.surname}}</p>
-        <p>{{item.username}}</p>
-        <img [src]="item.profilePic" alt="">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <p>Name: {{item.name}}</p>
+            <p>Surname: {{item.surname}}</p>
+            <p>Username: {{item.username}}</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <img [src]="item.profilePic" alt="">
+          </div>
+        </div>
       </div>
 
       <div *ngIf="item.species">
         <!-- Check if it's a pet, then show properties -->
-        {{item.name}}
-        <p>{{item.species}}</p>
-        <p>{{item.color}}</p>
-      </div>
-    </div>
-
-    <hr class="my-4">
-
-    <div *ngIf="sessionService.user">
-
-      <div *ngIf="sessionService.user.role == 'admin'">
-        <div *ngIf="item">
-          <div *ngIf="item.email">
-            <form>
-              {{item.pets}}
-              <h2>{{item.username}}</h2>
-              <br>
-              <label> Name </label>
-              <input type="text" [(ngModel)]="item.name" name="name" />
-              <label> Surname </label>
-              <input type="text" [(ngModel)]="item.surname" name="surname" />
-              <label> Email </label>
-              <input type="email" [(ngModel)]="item.email" name="email" />
-              <div *ngIf="item.role == 'customer'">
-                <button (click)="updateCustomer(item.username, item.name, item.surname, item.email)"> Change CUSTOMER details </button>
-              </div>
-              <div *ngIf="item.role == 'vet' || 'receptionist'">
-                <button (click)="updateStaff(item.username, item.name, item.surname, item.email)"> Change staff details </button>
-              </div>
-            </form>
-            <p class="error"> {{ error }} </p>
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <p>Name: {{item.name}}</p>
+            <p>Species: {{item.species}}</p>
+            <p>Color: {{item.color}}</p>
+            <p>Weight: {{item.weight}}kg</p>
           </div>
-
-          <div *ngIf="item.species">
-            <form (ngSubmit)="updatePet(item.name, item.species, item.color, item.weight)" ngNativeValidate>
-              <h2>Pet details</h2>
-              <label> Name </label>
-              <input type="text" [(ngModel)]="item.name" name="petName" />
-              <label> Species </label>
-              <input type="text" [(ngModel)]="item.species" name="species" />
-              <label> Color </label>
-              <input type="text" [(ngModel)]="item.color" name="color" />
-              <label> Weight </label>
-              <input type="text" [(ngModel)]="item.weight" name="weight" />
-              <button> Change pet details </button>
-            </form>
-            <p class="error"> {{ error }} </p>
+          <div class="col-md-6 text-center">
+            <img [src]="item.profilePic" alt="">
           </div>
-
         </div>
-
       </div>
 
+      <hr class="my-4">
+
+      <div *ngIf="sessionService.user">
+
+        <div *ngIf="sessionService.user.role == 'admin'">
+          <div *ngIf="item">
+            <div *ngIf="item.email">
+              <form>
+                <h2>{{item.username}}</h2>
+                <label> Name </label>
+                <input type="text" [(ngModel)]="item.name" name="name" />
+                <label> Surname </label>
+                <input type="text" [(ngModel)]="item.surname" name="surname" />
+                <label> Email </label>
+                <input type="email" [(ngModel)]="item.email" name="email" />
+                <div *ngIf="item.role == 'customer'">
+                  <button class="btn btn-home" (click)="updateCustomer(item.username, item.name, item.surname, item.email)"> Modify customer details </button>
+                </div>
+                <div *ngIf="item.role == 'vet' || item.role == 'receptionist'">
+                  <button class="btn btn-home" (click)="updateStaff(item.username, item.name, item.surname, item.email)"> Modify details </button>
+                </div>
+              </form>
+              <p class="error"> {{ error }} </p>
+            </div>
+
+            <div *ngIf="item.species">
+              <form (ngSubmit)="updatePet(item.name, item.species, item.color, item.weight)" ngNativeValidate>
+                <h2>Pet details</h2>
+                <label> Name </label>
+                <input type="text" [(ngModel)]="item.name" name="petName" disabled />
+                <label> Species </label>
+                <input type="text" [(ngModel)]="item.species" name="species" />
+                <label> Color </label>
+                <input type="text" [(ngModel)]="item.color" name="color" />
+                <label> Weight </label>
+                <input type="text" [(ngModel)]="item.weight" name="weight" />
+                <button class="btn btn-home" (click)="updatePet(item.name, item.species, item.color, item.weight)"> Modify pet details </button>
+              </form>
+              <p class="error"> {{ error }} </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>

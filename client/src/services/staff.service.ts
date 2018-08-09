@@ -49,7 +49,6 @@ export class StaffService {
   }
 
   newStaff(username, password, name, surname, email): Observable<object> {
-    console.log(username);
     return this.http
       .post(
         `${BASEURL}/api/staff/newstaff`,

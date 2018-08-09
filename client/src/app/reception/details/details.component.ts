@@ -8,7 +8,7 @@ import { StaffService } from "../../../services/staff.service";
 @Component({
   selector: "app-details",
   templateUrl: "./details.component.html",
-  styleUrls: ["./details.component.css"]
+  styleUrls: ["./details.component.scss"]
 })
 export class DetailsComponent implements OnInit {
   item: any;
@@ -49,7 +49,7 @@ export class DetailsComponent implements OnInit {
     this.customerService
       .updateCustomer(username, name, surname, email)
       .subscribe(() => {
-        this.router.navigate(["admin"]);
+        this.router.navigate(["reception"]);
       });
   }
 
@@ -63,7 +63,7 @@ export class DetailsComponent implements OnInit {
 
   updatePet(name, species, color, weight) {
     this.petService.updatePet(name, species, color, weight).subscribe(() => {
-      this.router.navigate(["admin"]);
+      this.router.navigate(["reception"]);
     });
   }
 }

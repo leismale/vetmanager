@@ -50,7 +50,6 @@ router.get("/getStaff/:id", (req, res, next) => {
 router.post("/updateStaff", (req, res, next) => {
   const username = req.body.username;
   let staffInfo = {
-    username: req.body.newUsername,
     name: req.body.name,
     surname: req.body.surname,
     email: req.body.email

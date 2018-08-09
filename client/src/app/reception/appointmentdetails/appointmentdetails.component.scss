@@ -29,17 +29,19 @@
   background-color: #282250;
   color: white;
   border: 2px solid #282250;
+  margin-top: 20px;
 }
 
 form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 
   label {
     min-width: 100px;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   .form-group {
@@ -53,7 +55,13 @@ form {
   }
 
   .description {
-    width: 500px;
-    height: 200px;
+    min-width: 400px;
+    min-height: 200px;
+  }
+
+  .descriptionWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -1,7 +1,10 @@
-.jumbotron {
-  background-color: white !important;
-  padding: 10px !important;
-  color: #282250 !important;
+.formWrapper {
+  margin: 30px auto;
+
+}
+
+.jumbotron{
+    width: 100%;
 }
 
 form {
@@ -32,4 +35,13 @@ form {
   background-color: #282250;
   color: white;
   border: 2px solid #282250;
+  margin-top: 30px;
+}
+
+.text-center{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
