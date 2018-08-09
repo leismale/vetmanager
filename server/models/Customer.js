@@ -21,7 +21,7 @@ const customerSchema = new Schema(
     appointment: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
     // invoices: { type: Schema.Types.ObjectId, ref: "Invoice" },
     pets: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
-    confirmationCode: { type: String, default: false }
+    confirmationCode: { type: String, default: "" }
   },
   {
     timestamps: {

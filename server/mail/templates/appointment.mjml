@@ -1,0 +1,34 @@
+<mjml>
+  <mj-head>
+    <mj-title>You've booked an appointment in Vet Manager</mj-title>
+    <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500"></mj-font>
+    <mj-attributes>
+      <mj-all font-family="Montserrat, Helvetica, Arial, sans-serif"></mj-all>
+      <mj-text font-weight="400" font-size="16px" color="#000000" line-height="24px"></mj-text>
+      <mj-section padding="0px"></mj-section>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#F2F2F2">
+    <mj-section padding="20px 20px 0 20px" background-color="#FFFFFF">
+      <mj-column width="100%">
+        <mj-image src="https://i2.wp.com/www.pethealthpharmacy.com/wp-content/uploads/2017/05/Final-Front-Page-Image.png?resize=1240%2C519" width="210px" height="210px" alt="Finderpet" align="center" border="none" padding="0px"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="0 20px 0 20px" background-color="#FFFFFF">
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 40px 10px 40px" font-size="32px" line-height="40x" color="#5FA91D">{{welcome}}</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="0 20px 0 20px" background-color="#FFFFFF">
+      <mj-column width="80%">
+        <mj-text align="center" padding-top="10px" font-weight="500" padding="0px">{{claim}}</mj-text>
+        <mj-button align="center" background-color="#5FA91D" color="#FFFFFF" border-radius="2px" href="{{confirmationUrl}}" inner-padding="15px 30px" padding-bottom="50px" padding-top="20">{{confirmationString}}</mj-button>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#FFFFFF">
+      <mj-column>
+        <mj-image src="http://nimus.de/share/tpl-card/bottom.png" alt="bottom border" align="center" border="none" padding="0px"></mj-image>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

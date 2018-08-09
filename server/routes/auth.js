@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const Customer = require("../models/Customer");
 const passport = require("passport");
+const { sendMail } = require("../mail/sendMail");
+const urlencode = require("urlencode");
 
 const login = (req, user) => {
   return new Promise((resolve, reject) => {
@@ -42,6 +44,27 @@ router.post("/signup", (req, res, next) => {
       }).save();
     })
     .then(savedUser => login(req, savedUser)) // Login the user using passport
+    .then(user => {
+      const hashConfirmation = bcrypt.hashSync(user.username, 10);
+      let urlConfirmation = urlencode(hashConfirmation);
+      let subject = "Confirm your registration at Vet manager";
+      let welcome = "Welcome to Vet manager";
+      let claim = "Please, use the button below to confirm your registration.";
+      let confirmationString = "Validate your account";
+      sendMail(
+        email,
+        subject,
+        {
+          confirmationUrl: `${process.env.URL}auth/confirm/${urlConfirmation}`,
+          welcome,
+          claim,
+          confirmationString
+        },
+        "confirmation"
+      ).then(() => {
+        console.log("Email sent");
+      });
+    })
     .then(user => res.json({ status: "signup & login successfully", user })) // Answer JSON
     .catch(e => next(e));
 });
