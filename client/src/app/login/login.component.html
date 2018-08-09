@@ -4,15 +4,11 @@
   <div class="text-center">
     <form ngNativeValidate>
       <div class="form-group">
-        <label>Username
-          <i class="material-icons">perm_identity</i>
-        </label>
-        <input type="text" [(ngModel)]="username" name="username" [placeholder]="placeholderUser" required/>
+        <i class="material-icons">perm_identity</i>
+        <input type="text" [(ngModel)]="username" name="username" [placeholder]="placeholderUser" autofocus required/>
       </div>
       <div class="form-group">
-        <label> Password
-          <i class="material-icons">lock</i>
-        </label>
+        <i class="material-icons">lock</i>
         <input type="password" [(ngModel)]="password" name="password" [placeholder]="placeholderPass" required />
       </div>
       <button class="btn btn-home" (click)="login(username,password)" data-dismiss='modal'>Login</button>

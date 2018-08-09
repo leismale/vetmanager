@@ -4,26 +4,31 @@
     <hr class="my-4">
     <div class="text-center">
       <form (ngSubmit)="newPet(owner, name, species, color, weight)" ngNativeValidate>
-        <label> Username </label>
-        <select [(ngModel)]="owner" name="owner" required>
-          <option value="{{customer.username}}" *ngFor="let customer of customers">{{customer.username}}</option>
-        </select>
-        <br>
-        <h2>Pet</h2>
-        <label> Name
+        <div class="form-group baseline">
+          <label>Username </label>
+          <select [(ngModel)]="owner" name="owner" required>
+            <option value="{{customer.username}}" *ngFor="let customer of customers">{{customer.username}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <h2>Pet</h2>
+        </div>
+        <div class="form-group">
           <i class="material-icons">pets</i>
-        </label>
-        <input type="text" [(ngModel)]="name" name="name" required />
-        <br>
-        <label> Species </label>
-        <input type="text" [(ngModel)]="species" name="species" required />
-        <br>
-        <label> Color </label>
-        <input type="text" [(ngModel)]="color" name="color" required />
-        <br>
-        <label> Weight </label>
-        <input type="text" [(ngModel)]="weight" name="weight" required />
-        <br>
+          <input type="text" [(ngModel)]="name" name="name" [placeholder]="placeholderName" required />
+        </div>
+        <div class="form-group">
+          <i class="material-icons">pets</i>
+          <input type="text" [(ngModel)]="species" name="species" [placeholder]="placeholderSpecies" required />
+        </div>
+        <div class="form-group">
+          <i class="material-icons">color_lens</i>
+          <input type="text" [(ngModel)]="color" name="color" [placeholder]="placeholderColor" required />
+        </div>
+        <div class="form-group">
+          <i class="material-icons">fitness_center</i>
+          <input type="text" [(ngModel)]="weight" name="weight" [placeholder]="placeholderWeight" required />
+        </div>
         <button (click)="newPet(owner, name, species, color, weight)" data-dismiss='modal'>Add pet</button>
       </form>
       <p class="error"> {{ error }} </p>

@@ -10,6 +10,11 @@ import { Router } from "@angular/router";
 export class CustomerComponent implements OnInit {
   constructor(private sessionService: SessionService, private router: Router) {}
 
+  placeholderUser = "Username";
+  placeholderPass = "Password";
+  placeholderName = "Name";
+  placeholderSurname = "Surname";
+  placeholderEmail = "Email";
   username: string;
   password: string;
   name: string;
@@ -20,7 +25,7 @@ export class CustomerComponent implements OnInit {
   ngOnInit() {}
 
   changeSettings(
-    usernameId =  this.sessionService.user._id,
+    usernameId = this.sessionService.user._id,
     password: string,
     name: string,
     surname: string,

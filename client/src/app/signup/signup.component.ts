@@ -8,7 +8,12 @@ import { Router } from "../../../node_modules/@angular/router";
   styleUrls: ["./signup.component.scss"]
 })
 export class SignupComponent{
-
+  
+  placeholderUser = "Username";
+  placeholderPass = "Password";
+  placeholderName = "Name";
+  placeholderSurname = "Surname";
+  placeholderEmail = "Email";
   username: string;
   password: string;
   name: string;

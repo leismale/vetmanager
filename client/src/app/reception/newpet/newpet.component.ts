@@ -6,10 +6,15 @@ import { CustomerService } from "../../../services/customer.service";
 @Component({
   selector: "app-newpet",
   templateUrl: "./newpet.component.html",
-  styleUrls: ["./newpet.component.css"]
+  styleUrls: ["./newpet.component.scss"]
 })
 export class NewpetComponent implements OnInit {
   constructor(public petService: PetService, public router: Router, public customerService: CustomerService) {}
+  
+  placeholderName = "Name";
+  placeholderSpecies = "Species";
+  placeholderColor = "Color";
+  placeholderWeight = "Weight";
   newPetInfo: object;
   owner: string;
   name: string;

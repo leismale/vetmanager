@@ -1,48 +1,71 @@
-<div class="container wrapper">
-  <div class="jumbotron">
-    <h3>Appointment details</h3>
-    <div *ngIf="item">
-      <p>Time: {{item.start | date: 'hh:mm'}}</p>
-      <p>Customer: {{item.title}}</p>
-      <p>Customer email: {{item.user.email}}</p>
-      <hr class="my-4">
-      <h4>Pet details</h4>
-      <p>Pet name: {{item.user.pets[0].name}}</p>
-      <p>Species: {{item.user.pets[0].species}}</p>
-      <p>Weight: {{item.user.pets[0].weight}}</p>
-      <p>Color: {{item.user.pets[0].color}}</p>
-    </div>
-
-    <div *ngIf="sessionService.user">
-      <div *ngIf="sessionService.user.role == 'admin'">
-        <div *ngIf="item">
-          <form (ngSubmit)="updateAppointment(item.title, start, end)" ngNativeValidate>
-            <h2>Appointment details</h2>
-            <label> Customer </label>
-            <input type="text" [(ngModel)]="item.title" name="title" required />
-            <label> Start </label>
-            <input type="text" [(ngModel)]="start" name="start" required />
-            <label> End </label>
-            <input type="text" [(ngModel)]="end" name="end" required />
-            <button type="submit"> Change details </button>
-          </form>
-          <p class="error"> {{ error }} </p>
+<div class="sectionBackground">
+  <div class="container wrapper">
+    <div class="jumbotron">
+      <div *ngIf="item" class="row">
+        <div class="col-md-6 text-center">
+          <h4>Appointment details</h4>
+          <p>Time: {{item.start | date: 'hh:mm'}}</p>
+          <p>Customer: {{item.title}}</p>
+          <p>Customer email: {{item.user.email}}</p>
         </div>
+        <div class="col-md-6 text-center">
+          <h4>Pet details</h4>
+          <p>Pet name: {{item.user.pets[0].name}}</p>
+          <p>Species: {{item.user.pets[0].species}}</p>
+          <p>Weight: {{item.user.pets[0].weight}}</p>
+          <p>Color: {{item.user.pets[0].color}}</p>
+          <p *ngIf="item.content">Comments: {{item.content}}</p>
+        </div>
+        <hr class="my-4">
       </div>
 
-      <div *ngIf="sessionService.user.role == 'vet'">
-        <div *ngIf="item">
-          <div *ngFor="let item of item.user.pets">
+      <div *ngIf="sessionService.user">
+        <div *ngIf="sessionService.user.role == 'admin' || sessionService.user.role == 'receptionist' ">
+          <div *ngIf="item">
+            <form (ngSubmit)="updateAppointment(item.title, start, end)" ngNativeValidate>
+              <div class="form-group">
+                <label> Customer </label>
+              </div>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="item.title" name="title" required />
+              </div>
+              <div class="form-group">
+                <label> Start </label>
+              </div>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="start" name="start" required />
+              </div>
+              <div class="form-group">
+                <label> End </label>
+              </div>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="end" name="end" required />
+              </div>
+              <button type="submit" class="btn btn-home"> Change details </button>
+            </form>
+            <p class="error"> {{ error }} </p>
           </div>
-          <form (ngSubmit)="closeAppointment(weight, description)" ngNativeValidate>
-            <h2>Appointment details</h2>
-            <label>Weight</label>
-            <input type="text" [(ngModel)]="weight" name="weight" required />
-            <label>Description</label>
-            <input type="text" [(ngModel)]="description" name="description" required />
-            <button type="submit">Submit</button>
-          </form>
-          <p class="error"> {{ error }} </p>
+        </div>
+
+        <div *ngIf="sessionService.user.role == 'vet'">
+          <div *ngIf="item">
+            <form (ngSubmit)="closeAppointment(weight, description)" ngNativeValidate>
+              <div class="form-group">
+                <label>Weight</label>
+              </div>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="weight" name="weight" required />
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+              </div>
+              <div class="form-group">
+                <textarea [(ngModel)]="description" name="description" required class="description"> </textarea>
+              </div>
+              <button type="submit" class="btn btn-home">Close consultation</button>
+            </form>
+            <p class="error"> {{ error }} </p>
+          </div>
         </div>
       </div>
     </div>

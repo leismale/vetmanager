@@ -1,0 +1,59 @@
+.sectionBackground {
+  background-color: rgb(247, 247, 247);
+  height: calc(100vh - 56px);
+  width: 100%;
+  padding-top: 30px;
+}
+
+.jumbotron {
+  background-color: white !important;
+  padding: 30px;
+  color: #282250 !important;
+
+  input,
+  textarea {
+    color: #282250;
+    border-color: #282250;
+    border: 2px solid;
+    margin: 10px;
+  }
+
+  span,
+  label {
+    color: #282250 !important;
+    text-decoration: none;
+  }
+}
+
+.btn-home {
+  background-color: #282250;
+  color: white;
+  border: 2px solid #282250;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  label {
+    min-width: 100px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .form-group {
+    min-width: 310px;
+    text-align: center;
+    margin: 0;
+  }
+
+  input {
+    padding-left: 15px;
+  }
+
+  .description {
+    width: 500px;
+    height: 200px;
+  }
+}

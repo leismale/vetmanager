@@ -1,5 +1,5 @@
-.formWrapper{
-    margin: 30px;
+.formWrapper {
+  margin: 30px;
 }
 
 form {
@@ -7,16 +7,22 @@ form {
   flex-direction: column;
   align-items: center;
 
-  label {
-    min-width: 100px;
-  }
-
   .form-group {
     min-width: 310px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  input{
+  input {
     padding-left: 15px;
+    border: 1px solid #282250;
+  }
+
+  i {
+    font-size: 26px;
+    border: solid #282250;
+    border-width: 1px 0px 1px 1px;
   }
 }
 

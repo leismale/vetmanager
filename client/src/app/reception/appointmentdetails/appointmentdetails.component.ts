@@ -6,7 +6,7 @@ import { AppointmentService } from "../../../services/appointment.service";
 @Component({
   selector: "app-appointmentdetails",
   templateUrl: "./appointmentdetails.component.html",
-  styleUrls: ["./appointmentdetails.component.css"]
+  styleUrls: ["./appointmentdetails.component.scss"]
 })
 export class AppointmentdetailsComponent implements OnInit {
   itemId: string;
